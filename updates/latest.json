@@ -1,7 +1,7 @@
 {
-  "version": "2.4.0",
-  "file": "Ignite3D-Update-2.4.0.exe",
-  "size": 620016,
-  "sha256": "00e39921deb8e8d414f3e4bc28b205375f223903c7aec692a066c21f572a54d6",
-  "notes": "## What's new in 2.4\n- **Use the Claude app with Ignite3D.** In the Claude panel, open settings (gear icon) and click **Connect** under \"Use the Claude app\". Then restart the Claude app and ask Claude to build in Ignite3D, using your Claude subscription with no API key.\n- Updates now come from the oRit-907/Ignite3D repository."
+  "version": "2.5.0",
+  "file": "Ignite3D-Update-2.5.0.exe",
+  "size": 627792,
+  "sha256": "0fefc367bb4427faaef86046424df651cad09fa1b49dce631781b4ae72fac09e",
+  "notes": "## Model Maker upgrade\n- **Blender-style G / R / S**: move the mouse to move, rotate or scale, press X/Y/Z to lock an axis, type a number, then click to confirm. **E** extrudes and pulls with the mouse.\n- **Loop cut** (Ctrl+R), **edge loop select** (Alt+click) and **Bridge edge loops** (Ctrl+E)\n- **Proportional editing** (O): nearby vertices follow smoothly; scroll to change the radius\n- **Snapping** (Shift+Tab), **creased edges** that stay sharp under Subdivision (Shift+E), and a **Solidify** modifier\n- **Textures** on materials, auto-mapped onto the model and saved in the .glb\n- **Reference images** to trace over\n- Claude can now build models too (\"make me a low-poly tree\")"
 }
