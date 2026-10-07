@@ -1,7 +1,7 @@
 {
-  "version": "2.6.0",
-  "file": "Ignite3D-Update-2.6.0.exe",
-  "size": 632893,
-  "sha256": "83423cff08996e95239d444de2ff5753c57a457f75ec60ff0336174280096c7a",
-  "notes": "## Claude app connector\n- Claude now works through the **Claude app** on your Claude subscription. The API key option is gone, and any saved key is deleted.\n- New **Ignite3D extension** for the Claude app: download `extension/Ignite3D.mcpb` from the Ignite3D repo, then open it with the Claude app.\n- **Faster bridge**: each step is about 3\u00d7 quicker, Claude gets the Ignite3D guide up front, and a new **batch** tool does many steps in one go.\n- Includes the 2.5 Model Maker upgrade."
+  "version": "2.7.0",
+  "file": "Ignite3D-Update-2.7.0.exe",
+  "size": 633655,
+  "sha256": "870562d218aa96452a759103f10701e6a8ad8b004a533b37e73bd7a3c21f4d69",
+  "notes": "## Fewer clicks with the Claude app\n- Claude now reaches Ignite3D through **one tool**, so you choose **Always allow** once and never get asked again.\n- If the Ignite3D extension is installed in the Claude app, the older direct link is removed automatically, so Claude doesn't see Ignite3D twice.\n- Get the updated extension from the repo: `extension/Ignite3D.mcpb`."
 }
