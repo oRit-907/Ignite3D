@@ -1,7 +1,7 @@
 {
-  "version": "2.7.0",
-  "file": "Ignite3D-Update-2.7.0.exe",
-  "size": 633655,
-  "sha256": "870562d218aa96452a759103f10701e6a8ad8b004a533b37e73bd7a3c21f4d69",
-  "notes": "## Fewer clicks with the Claude app\n- Claude now reaches Ignite3D through **one tool**, so you choose **Always allow** once and never get asked again.\n- If the Ignite3D extension is installed in the Claude app, the older direct link is removed automatically, so Claude doesn't see Ignite3D twice.\n- Get the updated extension from the repo: `extension/Ignite3D.mcpb`."
+  "version": "2.8.0",
+  "file": "Ignite3D-Update-2.8.0.exe",
+  "size": 646394,
+  "sha256": "3f3f35744c3c66d4ab6071133bf5929f6b191da2f776663ba8519ff6e1ad8504",
+  "notes": "## Skeletons and animation in the Model Maker\n- New **Skeleton** mode (4): add bones, extrude chains, or drop in a **Humanoid** skeleton fitted to your model. Symmetrize copies left bones to the right.\n- Skin follows the bones automatically; **Weight paint** (P) fixes spots that bend wrong.\n- New **Pose** mode (5) with a timeline: pose bones, press **I** to keyframe, Space to play. Ready-made Walk, Run, Idle, Wave and Jump clips for humanoids.\n- Saved models keep their bones and clips, and the **Animator** component plays them in your game.\n- Claude can build rigged, animated models too. Get the updated extension from the repo: `extension/Ignite3D.mcpb`."
 }
