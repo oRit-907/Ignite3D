@@ -1,7 +1,7 @@
 {
-  "version": "2.8.0",
-  "file": "Ignite3D-Update-2.8.0.exe",
-  "size": 646394,
-  "sha256": "3f3f35744c3c66d4ab6071133bf5929f6b191da2f776663ba8519ff6e1ad8504",
-  "notes": "## Skeletons and animation in the Model Maker\n- New **Skeleton** mode (4): add bones, extrude chains, or drop in a **Humanoid** skeleton fitted to your model. Symmetrize copies left bones to the right.\n- Skin follows the bones automatically; **Weight paint** (P) fixes spots that bend wrong.\n- New **Pose** mode (5) with a timeline: pose bones, press **I** to keyframe, Space to play. Ready-made Walk, Run, Idle, Wave and Jump clips for humanoids.\n- Saved models keep their bones and clips, and the **Animator** component plays them in your game.\n- Claude can build rigged, animated models too. Get the updated extension from the repo: `extension/Ignite3D.mcpb`."
+  "version": "2.9.0",
+  "file": "Ignite3D-Update-2.9.0.exe",
+  "size": 662367,
+  "sha256": "7a94470d3e410fa53cc072aa5d6b6daedbb2a11b93588361970a3db84cf6b12e",
+  "notes": "## Microsoft Store, Xbox, and a Unity-style Claude bridge\n- **Microsoft Store**: Build for Windows can now make a Store package (.msix) ready to upload in Partner Center, and install it on this PC to test.\n- **Xbox**: Build \u2192 Build for Xbox makes a web build that runs in Microsoft Edge on Xbox, with full controller support.\n- **Controllers** work in every game: Input.getAxis, Input.getButton('A'), LB/RB, triggers, rumble.\n- **Claude panel removed.** Claude now controls Ignite3D from the Claude desktop app. Ignite3D links itself to the Claude app automatically, and the spark button shows activity with Undo.\n- **Faster bridge, built like Unity's**: a persistent pipe instead of web requests (about 2\u00d7 faster per action), a quicker cold start, more editor commands (play, open, select, undo, eval, rig models, build), and an `ignite3d` terminal command. AI apps can be connected in one click: Claude Code, Cursor, VS Code and Windsurf.\n- The Ignite3D extension is retired. Uninstall it from the Claude app if you installed it."
 }

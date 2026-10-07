@@ -8,9 +8,23 @@ Get the latest **Ignite3D-Setup** from [Releases](../../releases/latest) and run
 
 Ignite3D checks this repository for updates. When a new version is out, it offers to install it from **Help → Check for Updates**.
 
-## Claude
+## Claude and other AI apps
 
-Ignite3D works with the Claude app. You can open [`extension/Ignite3D.mcpb`](extension/Ignite3D.mcpb) with the Claude app to install the Ignite3D extension, or click **Connect** in Ignite3D's Claude panel. Then ask Claude to build in Ignite3D.
+Ignite3D links itself to the Claude desktop app automatically. Claude can then build scenes, write scripts, make and rig models, play-test, and make Windows, Microsoft Store and Xbox builds. Ignite3D shows each action and lets you undo it.
+
+The bridge works like Unity's: the editor defines its commands, and the `ignite3d` command line drives the running editor.
+
+```
+ignite3d status                       # is Ignite3D running and ready?
+ignite3d command                      # list the editor's commands
+ignite3d command create_objects --objects '[{"name":"Box","components":[{"type":"MeshRenderer"}]}]'
+ignite3d eval "return engine.gameObjects.length"
+ignite3d screenshot --output shot.jpg
+ignite3d play | stop
+ignite3d mcp configure claude-code    # also: claude, cursor, vscode, windsurf (--list, --remove)
+```
+
+To add the `ignite3d` command to your terminals, open the **Claude app** window in Ignite3D (the spark button) and click **Add the ignite3d command to terminals**. The old Ignite3D extension (`.mcpb`) is retired. If it's still installed in the Claude app, uninstall it there.
 
 ## How updates work
 
