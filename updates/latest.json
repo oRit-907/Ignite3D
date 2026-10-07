@@ -1,7 +1,7 @@
 {
-  "version": "2.5.0",
-  "file": "Ignite3D-Update-2.5.0.exe",
-  "size": 633521,
-  "sha256": "e53064646ea8a8fb95aa660fd582fe64b5e24b439092b26d63db80b6c160592b",
-  "notes": "## Model Maker upgrade\n- **Blender-style G / R / S**: move the mouse to move, rotate or scale, press X/Y/Z to lock an axis, type a number, then click to confirm. **E** extrudes and pulls with the mouse.\n- **Loop cut** (Ctrl+R), **edge loop select** (Alt+click) and **Bridge edge loops** (Ctrl+E)\n- **Proportional editing** (O): nearby vertices follow smoothly; scroll to change the radius\n- **Snapping** (Shift+Tab), **creased edges** that stay sharp under Subdivision (Shift+E), and a **Solidify** modifier\n- **Textures** on materials, auto-mapped onto the model and saved in the .glb\n- **Reference images** to trace over\n- Claude can now build models too (\"make me a low-poly tree\")"
+  "version": "2.6.0",
+  "file": "Ignite3D-Update-2.6.0.exe",
+  "size": 632893,
+  "sha256": "83423cff08996e95239d444de2ff5753c57a457f75ec60ff0336174280096c7a",
+  "notes": "## Claude app connector\n- Claude now works through the **Claude app** on your Claude subscription. The API key option is gone, and any saved key is deleted.\n- New **Ignite3D extension** for the Claude app: download `extension/Ignite3D.mcpb` from the Ignite3D repo, then open it with the Claude app.\n- **Faster bridge**: each step is about 3\u00d7 quicker, Claude gets the Ignite3D guide up front, and a new **batch** tool does many steps in one go.\n- Includes the 2.5 Model Maker upgrade."
 }
