@@ -1,7 +1,7 @@
 {
-  "version": "2.12.0",
-  "file": "Ignite3D-Update-2.12.0.exe",
-  "size": 5233430,
-  "sha256": "a2bdde92b693e593dc20c29cb2d37e9f3e3b34baddfb0835582c725fef425507",
-  "notes": "## Online: multiplayer and cloud saves\n- New **Build \u2192 Online** window. Ignite3D deploys your own game server, Ignite Online, to your Cloudflare account: paste a Cloudflare API token and press Deploy. Cloudflare's free plan covers about 100,000 requests a day, and one server works for all your games.\n- **Multiplayer** (`Net`): peer-to-peer rooms with codes, quick match, and a new host when the host leaves. Players connect to each other directly (WebRTC). If their networks block that, Cloudflare TURN relays or the server connects them instead.\n- The new **Network Sync** component and `Net.spawn` keep objects in the same place on every player's screen.\n- **Cloud saves** (`Cloud`): saves follow the player between devices. They work offline and upload later. A link code moves a player to a new device.\n- Works in web, Windows, Steam and Android builds, but not yet in the native player.\n\n## Ads\n- **Build \u2192 Ads**: AdMob banner, interstitial and rewarded ads for Android builds, with Google's test ads on by default. Banners never cover the game; the game area makes room for them.\n- Play mode shows stand-in test ads, so you can try the flow in the editor.\n- Scripts use `Ads.showRewarded()`, `Ads.showInterstitial()` and `Ads.showBanner()`.\n\n## Android\n- Android builds now target Android 16 (API 36), which Google Play requires for new apps and updates.\n- Android builds now have internet access, which online games and ads need."
+  "version": "2.13.0",
+  "file": "Ignite3D-Update-2.13.0.exe",
+  "size": 5234787,
+  "sha256": "68c92fe02fb888ff3fb1d8b70bbb1a5184ed08974320ae5df46c794dfbadce02",
+  "notes": "## Web games: project models\n- Web Game code can now use the project's 3D models. Put `/* @ignite-models: MyGame- */` in the game code and every model asset whose name starts with `MyGame-` is packed into the game.\n- Load one with `await IgniteModels.load('MyGame-Car')` (the same result as three.js's GLTFLoader). `IgniteModels.names()` lists them.\n- When a model has several versions (`MyGame-Car`, `MyGame-Car-v2`, `MyGame-Car-v3`), the highest number is used, so importing a newer copy replaces the old one without changing the code.\n- Works in Play mode, web exports, Android builds, and Windows, Steam, Microsoft Store and Xbox builds that use the Web player.\n- The Web Game inspector lists the models that will be packed in."
 }
