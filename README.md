@@ -54,3 +54,7 @@ Steam.overlay('achievements');
 Ignite3D reads `updates/latest.json` in this repository, which names the newest version, its update file and its SHA-256 hash. It downloads that small `Ignite3D-Update-<version>.exe` from `updates/`, checks the hash, installs it and restarts. An update whose hash doesn't match is refused.
 
 To publish an update, add the new update `.exe` to `updates/` and point `latest.json` at it. GitHub releases also work: tag `vX.Y.Z`, attach the update `.exe`, and put `sha256: <hash>` in the notes. Ignite3D uses those only when `latest.json` is missing.
+
+## Releases
+
+Each version also has a [release](../../releases) with the full installer, a zip of the app and the update `.exe`. The Release workflow (`.github/workflows/release.yml`) makes it: push a branch `release/vX.Y.Z` from main with the installer in `release-files/` (split into parts under 100 MB, plus `SHA256SUMS`), and the workflow joins the parts, checks them, creates release `vX.Y.Z` on main with notes from `latest.json`, and deletes the branch.
