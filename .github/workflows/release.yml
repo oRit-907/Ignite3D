@@ -1,0 +1,103 @@
+# Makes the GitHub release for each Ignite3D version.
+#
+# In-app updates don't use this: Ignite3D reads updates/latest.json and the update .exe in updates/ on main.
+#
+# To make a release, push a branch named release/vX.Y.Z (started from main) with the files in release-files/:
+#   - files over 100 MB split into parts: Ignite3D-Setup-X.Y.Z.exe.part00, .part01, ... (smaller files as they are)
+#   - SHA256SUMS: sha256sum output for the joined files (pushed last; until it's there the run does nothing)
+#   - notes.md (optional): the release notes. Without it the notes come from updates/latest.json.
+# The workflow joins the parts, checks the hashes, creates release vX.Y.Z on the main commit the branch started
+# from (so the tag never carries the parts), attaches the files and the update .exe, then deletes the branch.
+name: Release
+
+on:
+  push:
+    branches: ['release/v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          VER="${BRANCH#release/v}"
+          TAG="v$VER"
+          F=release-files
+          if [ ! -f "$F/SHA256SUMS" ]; then
+            echo "No $F/SHA256SUMS yet, so there's nothing to do."
+            exit 0
+          fi
+
+          mkdir -p out
+          for first in "$F"/*.part00; do
+            [ -e "$first" ] || continue
+            name="$(basename "${first%.part00}")"
+            cat "$F/$name".part[0-9][0-9] > "out/$name"
+          done
+          for f in "$F"/*; do
+            case "$f" in *.part[0-9][0-9]|*/SHA256SUMS|*/notes.md) continue ;; esac
+            cp "$f" out/
+          done
+          (cd out && sha256sum -c "../$F/SHA256SUMS")
+
+          LATEST_VER="$(jq -r .version updates/latest.json)"
+          UPD="updates/Ignite3D-Update-$VER.exe"
+          if [ -f "$UPD" ]; then
+            cp "$UPD" out/
+            if [ "$LATEST_VER" = "$VER" ]; then
+              echo "$(jq -r .sha256 updates/latest.json)  Ignite3D-Update-$VER.exe" | (cd out && sha256sum -c -)
+            fi
+          fi
+
+          sum() { sha256sum "out/$1" | cut -d' ' -f1; }
+          {
+            echo "**New to Ignite3D?** Download **Ignite3D-Setup-$VER.exe** below and run it."
+            echo "**Already have Ignite3D?** You don't need anything here: it offers this version from **Help → Check for Updates**."
+            echo
+            if [ -f "$F/notes.md" ]; then
+              cat "$F/notes.md"
+            elif [ "$LATEST_VER" = "$VER" ]; then
+              jq -r .notes updates/latest.json
+            fi
+            echo
+            echo "## Downloads"
+            if [ -f "out/Ignite3D-Setup-$VER.exe" ]; then echo "- **Ignite3D-Setup-$VER.exe**: the installer."; fi
+            if [ -f "out/Ignite3D-$VER-win-x64.zip" ]; then echo "- **Ignite3D-$VER-win-x64.zip**: the same app without an installer. Unzip it and run \`Ignite3D.exe\`."; fi
+            if [ -f "out/Ignite3D-Update-$VER.exe" ]; then echo "- **Ignite3D-Update-$VER.exe**: the update Ignite3D installs itself. You don't need to run it."; fi
+            echo
+            echo "The installer isn't code-signed yet, so Windows SmartScreen may warn you. Choose **More info → Run anyway**."
+            echo
+            echo "## Checksums"
+            # The update's hash comes first: Ignite3D's fallback update check reads the first sha256 in the notes.
+            if [ -f "out/Ignite3D-Update-$VER.exe" ]; then echo "- Ignite3D-Update-$VER.exe sha256: $(sum "Ignite3D-Update-$VER.exe")"; fi
+            for f in out/*; do
+              n="$(basename "$f")"
+              if [ "$n" != "Ignite3D-Update-$VER.exe" ]; then echo "- $n sha256: $(sum "$n")"; fi
+            done
+          } > release-notes.md
+          cat release-notes.md
+
+          if [ "$LATEST_VER" = "$VER" ]; then LATEST=true; else LATEST=false; fi
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" out/* --clobber
+            gh release edit "$TAG" --title "Ignite3D $VER" --notes-file release-notes.md --latest="$LATEST"
+          else
+            BASE="$(git merge-base HEAD origin/main)"
+            gh release create "$TAG" out/* --title "Ignite3D $VER" --notes-file release-notes.md --target "$BASE" --latest="$LATEST"
+          fi
+          git push origin --delete "$BRANCH"
