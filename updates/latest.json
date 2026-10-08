@@ -1,7 +1,7 @@
 {
-  "version": "2.9.1",
-  "file": "Ignite3D-Update-2.9.1.exe",
-  "size": 663366,
-  "sha256": "0629dec282c9aa138904cace59fea89ed34512c1533835c3794ab906246859e9",
-  "notes": "## Package family name for Microsoft Store builds\n- Build for Windows \u2192 Microsoft Store now has a **Package family name (PFN)** field. Paste the PFN from Partner Center \u2192 Product identity: it fills in the package name and checks that your name and publisher match it before building.\n- Without one, the dialog shows the PFN your build will have, and every Store build reports its PFN.\n- Claude's build_game command accepts and returns the package family name too."
+  "version": "2.10.0",
+  "file": "Ignite3D-Update-2.10.0.exe",
+  "size": 1229290,
+  "sha256": "384c1d47e0c45f915937ab29ceea41c1317e0a82a534bc8dac5da589581b5874",
+  "notes": "## Steam builds\n- **Build \u2192 Build for Steam** (or Build for Windows \u2192 Package \u2192 Steam) makes a Windows game with Steamworks inside: achievements, stats, Steam Cloud saves, the Steam overlay and the player's name.\n- Scripts get a **Steam** helper: `Steam.unlock('ACH_FIRST_WIN')`, `Steam.addStat('kills', 1)`, `await Steam.cloudSave('slot1', data)` / `cloudLoad`, `Steam.overlay('achievements')`. In the editor and in non-Steam builds these are safe: achievements and stats are kept for the session, and cloud saves use the device.\n- Next to the game, a **Steam upload** folder holds the SteamCMD build script, **Upload to Steam.bat** and a README with the one-time Steamworks setup. **Upload to Steam** in Ignite3D opens a window where you sign in to Steam yourself.\n- Claude's build_game command can make Steam builds too.\n\n## Claude app link\n- The Claude app window now shows whether Claude really has Ignite3D loaded, not just whether it's linked.\n- If Claude was already open when Ignite3D linked itself, Ignite3D says so and can restart the Claude app for you.\n- Ignite3D repairs its link at start if it goes missing, unless you chose Disconnect.\n\n## Fixes\n- Changes made in the Build for Windows dialog after a build now apply to the next build."
 }

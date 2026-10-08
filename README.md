@@ -1,6 +1,6 @@
 # Ignite3D
 
-Ignite3D is a 3D game engine and editor for Windows, with Android and web builds.
+Ignite3D is a 3D game engine and editor for Windows. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge), Android and the web.
 
 ## Download
 
@@ -10,7 +10,7 @@ Ignite3D checks this repository for updates. When a new version is out, it offer
 
 ## Claude and other AI apps
 
-Ignite3D links itself to the Claude desktop app automatically. Claude can then build scenes, write scripts, make and rig models, play-test, and make Windows, Microsoft Store and Xbox builds. Ignite3D shows each action and lets you undo it.
+Ignite3D links itself to the Claude desktop app automatically. Claude can then build scenes, write scripts, make and rig models, play-test, and make Windows, Steam, Microsoft Store and Xbox builds. Ignite3D shows each action and lets you undo it.
 
 The bridge works like Unity's: the editor defines its commands, and the `ignite3d` command line drives the running editor.
 
@@ -25,6 +25,18 @@ ignite3d mcp configure claude-code    # also: claude, cursor, vscode, windsurf (
 ```
 
 To add the `ignite3d` command to your terminals, open the **Claude app** window in Ignite3D (the spark button) and click **Add the ignite3d command to terminals**. The old Ignite3D extension (`.mcpb`) is retired. If it's still installed in the Claude app, uninstall it there.
+
+## Steam
+
+**Build → Build for Steam** makes a Windows game with Steamworks (achievements, stats, Steam Cloud saves, the overlay) and a **Steam upload** folder next to it with the SteamCMD build script and **Upload to Steam.bat**. You need a Steamworks account and an App ID for your game. In scripts:
+
+```js
+Steam.unlock('ACH_FIRST_WIN');
+Steam.addStat('kills', 1);
+await Steam.cloudSave('slot1', { level: 3 });
+const save = await Steam.cloudLoad('slot1', null);
+Steam.overlay('achievements');
+```
 
 ## How updates work
 
