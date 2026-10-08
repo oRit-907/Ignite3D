@@ -26,6 +26,17 @@ ignite3d mcp configure claude-code    # also: claude, cursor, vscode, windsurf (
 
 To add the `ignite3d` command to your terminals, open the **Claude app** window in Ignite3D (the spark button) and click **Add the ignite3d command to terminals**. The old Ignite3D extension (`.mcpb`) is retired. If it's still installed in the Claude app, uninstall it there.
 
+## Online games
+
+**Build → Online** deploys Ignite Online, your own game server, to your Cloudflare account. You need a free Cloudflare account and an API token with *Workers Scripts: Edit*, plus *Cloudflare Realtime: Edit* for TURN relays. It gives your games:
+
+- **Multiplayer** (`Net`): rooms with codes, quick match, peer-to-peer connections with TURN relays, a new host when the host leaves, and the Network Sync component.
+- **Cloud saves** (`Cloud`): saves that follow the player between devices and work offline.
+
+## Ads
+
+**Build → Ads** sets up AdMob banner, interstitial and rewarded ads for Android builds. Google's test ads are on until you turn them off. In Play Console, declare that the app contains ads and fill in Data safety as Google's AdMob guide describes.
+
 ## Steam
 
 **Build → Build for Steam** makes a Windows game with Steamworks (achievements, stats, Steam Cloud saves, the overlay) and a **Steam upload** folder next to it with the SteamCMD build script and **Upload to Steam.bat**. You need a Steamworks account and an App ID for your game. In scripts:
