@@ -1,7 +1,7 @@
 {
-  "version": "2.15.1",
-  "file": "Ignite3D-Update-2.15.1.exe",
-  "size": 5244249,
-  "sha256": "366806dac3acb5aa4448e2a1e37ba9417775f27b9c68646366b6d90110545a9e",
-  "notes": "## Microsoft Store builds\n- A Store build now writes **README-Store.txt** next to the .msix: the submission steps, and the note to paste into Partner Center's \"Notes for certification\" when the Windows App Certification Kit flags \"Blocked executables\". That result is expected for Chromium-based apps (the strings it finds are inside Chromium's own files; the game launches no programs)."
+  "version": "2.15.2",
+  "file": "Ignite3D-Update-2.15.2.exe",
+  "size": 5244243,
+  "sha256": "e083c60a58a4394371abd4a8f4457ff98096781c8083f8c818dce56469943e1a",
+  "notes": "## Microsoft Store without the certification warnings\n- Build \u2192 Build for Xbox \u2192 **Windows & Xbox app** (renamed from Xbox app) is now the recommended Store package: a UWP app on the WebView2 engine built into Windows, with no Chromium files of its own, so it passes the Windows App Certification Kit's \"Blocked executables\" test that the Electron .msix fails. One package covers Windows PCs and Xbox.\n- Build for Windows \u2192 Microsoft Store and README-Store.txt now say so."
 }
