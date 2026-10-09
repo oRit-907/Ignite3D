@@ -1,7 +1,27 @@
 {
-  "version": "2.17.1",
-  "file": "Ignite3D-Update-2.17.1.exe",
-  "size": 3682171,
-  "sha256": "5477eb1d2f3d7d573db700803b4e38771db3306e46b4a89e65dfa76becb5975b",
-  "notes": "## Steam sign-in, and links that open\n- **Steam builds** can sign players in with their Steam account: `IG.Steam.authTicket(identity)` (or `IgniteSteam.call('authTicket', identity)` in Web Game projects) gives a one-time ticket your server checks with Steam's AuthenticateUserTicket Web API.\n- **Windows and Steam builds (Web player):** links a game opens, such as sign-in pages and store pages, now open in the player's browser instead of doing nothing. The game window itself never navigates away."
+  "version": "2.18.0",
+  "file": "Ignite3D-Update-2.18.0.exe",
+  "size": 5323190,
+  "sha256": "3a30e05bff8812c55140deed36884ecd28760aa3ee54d407da7eb19c0b90f4a4",
+  "notes": "## Ignite3D for Linux and macOS\n- Ignite3D now ships for **Linux** (AppImage) and **macOS** (Apple silicon and Intel) alongside Windows. Download them from the GitHub release.\n- **Help \u2192 Check for Updates** works on all three: Windows installs the small update as before, Linux replaces the AppImage in place, macOS replaces the app. Every download is checked against its SHA-256.\n- Builds from Linux and macOS: the Web player builds a game for the system you're on; the Native and C++ players build Windows games from the Windows version for now.\n\n## The C++ player is back\n- Build for Windows has three players: **Web** (Electron), **Native** (the Chromium Embedded Framework player from 2.17) and **C++ (scenes only)**: the 6 MB OpenGL player for scene games, with no browser engine. It can't run Web Game objects, online play or ads.",
+  "platforms": {
+    "linux": {
+      "file": "Ignite3D-2.18.0-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.18.0/Ignite3D-2.18.0-linux-x64.AppImage",
+      "size": 129125717,
+      "sha256": "a71f4bc399d561c0b22c726c325f379b91a92ca31c329e553d04f1b8000d6195"
+    },
+    "mac": {
+      "file": "Ignite3D-2.18.0-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.18.0/Ignite3D-2.18.0-mac-x64.zip",
+      "size": 352392276,
+      "sha256": "0a37009a37860c91b6b360db84d61fd0de0bf7f28c20be1240b21a8fe34de1a1"
+    },
+    "mac-arm64": {
+      "file": "Ignite3D-2.18.0-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.18.0/Ignite3D-2.18.0-mac-arm64.zip",
+      "size": 341018069,
+      "sha256": "a9f9328a33e369959b89179f84b4482ad1fae5526179157bff37b6321afd8f2e"
+    }
+  }
 }

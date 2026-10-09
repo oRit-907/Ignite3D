@@ -1,12 +1,16 @@
 # Ignite3D
 
-Ignite3D is a 3D game engine and editor for Windows. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge), Android and the web.
+Ignite3D is a 3D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge), Android and the web.
 
 ## Download
 
-Get the latest **Ignite3D-Setup** from [Releases](../../releases/latest) and run it.
+From [Releases](../../releases/latest):
 
-Ignite3D checks this repository for updates. When a new version is out, it offers to install it from **Help → Check for Updates**.
+- **Windows:** `Ignite3D-Setup-<version>.exe`. Run it.
+- **Linux:** `Ignite3D-<version>-linux-x64.AppImage`. Make it executable (`chmod +x`) and run it.
+- **macOS:** `Ignite3D-<version>-mac-arm64.zip` (Apple silicon) or `-mac-x64.zip` (Intel). Unzip and move Ignite3D.app to Applications. The app isn't notarized yet, so the first time right-click it → Open, or run `xattr -cr /Applications/Ignite3D.app`.
+
+Ignite3D checks this repository for updates on every system. When a new version is out, it offers to install it from **Help → Check for Updates**: Windows installs a small update, Linux replaces the AppImage, macOS replaces the app.
 
 ## Claude and other AI apps
 
@@ -52,6 +56,8 @@ Steam.overlay('achievements');
 ## How updates work
 
 Ignite3D reads `updates/latest.json` in this repository, which names the newest version, its update file and its SHA-256 hash. It downloads that small `Ignite3D-Update-<version>.exe` from `updates/`, checks the hash, installs it and restarts. An update whose hash doesn't match is refused.
+
+For Linux and macOS, `latest.json` also has a `platforms` section (`linux`, `mac`, `mac-arm64`) naming the release's AppImage or app zip, its download address, size and SHA-256. Ignite3D downloads that package, checks the hash and swaps itself.
 
 To publish an update, add the new update `.exe` to `updates/` and point `latest.json` at it. GitHub releases also work: tag `vX.Y.Z`, attach the update `.exe`, and put `sha256: <hash>` in the notes. Ignite3D uses those only when `latest.json` is missing.
 

@@ -84,6 +84,9 @@ jobs:
             if [ -f "out/Ignite3D-Setup-$VER.exe" ]; then echo "- **Ignite3D-Setup-$VER.exe**: the installer."; fi
             if [ -f "out/Ignite3D-$VER-win-x64.zip" ]; then echo "- **Ignite3D-$VER-win-x64.zip**: the same app without an installer. Unzip it and run \`Ignite3D.exe\`."; fi
             if [ -f "out/Ignite3D-Update-$VER.exe" ]; then echo "- **Ignite3D-Update-$VER.exe**: the update Ignite3D installs itself. You don't need to run it."; fi
+            if [ -f "out/Ignite3D-$VER-linux-x64.AppImage" ]; then echo "- **Ignite3D-$VER-linux-x64.AppImage**: Linux (x64). Make it executable (\`chmod +x\`) and run it; it updates itself from Help → Check for Updates."; fi
+            if [ -f "out/Ignite3D-$VER-mac-arm64.zip" ]; then echo "- **Ignite3D-$VER-mac-arm64.zip**: macOS on Apple silicon (M1 and later). Unzip, move Ignite3D.app to Applications. It isn't notarized yet: the first time, right-click the app → Open (or run \`xattr -cr /Applications/Ignite3D.app\`)."; fi
+            if [ -f "out/Ignite3D-$VER-mac-x64.zip" ]; then echo "- **Ignite3D-$VER-mac-x64.zip**: macOS on Intel. Same steps as above."; fi
             if [ "$VERSIONED" = true ]; then
             echo
             echo "The installer isn't code-signed yet, so Windows SmartScreen may warn you. Choose **More info → Run anyway**."
