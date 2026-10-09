@@ -1,7 +1,7 @@
 {
-  "version": "2.14.0",
-  "file": "Ignite3D-Update-2.14.0.exe",
-  "size": 5238223,
-  "sha256": "19810bd1c05aeaa09b14d660c88c875d1f55ceb03cf5e7100126966aa6796522",
-  "notes": "## Preview: play as on Android, Xbox or Windows\n- New **Preview** menu. Press Play inside a device frame: **Android** (phone, small phone or tablet; touch controls; the orientation from Build for Android, with Rotate when it's Auto), **Xbox** (a 1080p TV with controller input and no mouse, like Edge on Xbox, plus a TV-safe-area guide) or **Windows** (a window at the size from Build for Windows).\n- The game is fully playable in the frame, at the real device's screen size. The bar under the frame switches device, rotates, and exits. The choice sticks: Play keeps using it until you pick Editor View.\n- Claude can start a preview too (`play_control` with `preview`).\n- Fixed: pointer and joystick input stay exact when the game is scaled."
+  "version": "2.15.0",
+  "file": "Ignite3D-Update-2.15.0.exe",
+  "size": 5242930,
+  "sha256": "ea60a412cc7e7298478b5844ed555e8a2334fecaca6eee62b0ae4c50c8ff5fab",
+  "notes": "## Xbox app\n- **Build \u2192 Build for Xbox** now has two kinds. **Web game** is the Edge build as before. **Xbox app** writes a Visual Studio project (UWP, C#) that runs the game in WebView2, the Chromium engine Xbox ships. Open the .sln in Visual Studio 2022 (Universal Windows Platform workload) and press F5: it runs on the PC right away, deploys to an Xbox in Dev Mode, and can be sold on the Xbox Store through the Xbox Live Creators Program.\n- It uses the name, version, icon and Store identity from Build for Windows. README-Xbox-app.txt has every step for the PC, Dev Mode and the Store."
 }
