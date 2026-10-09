@@ -1,6 +1,6 @@
 # Ignite3D
 
-Ignite3D is a 3D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge), Android and the web.
+Ignite3D is a 3D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge, or as an app on a console in Dev Mode), Android and the web.
 
 ## Download
 
@@ -52,6 +52,18 @@ await Steam.cloudSave('slot1', { level: 3 });
 const save = await Steam.cloudLoad('slot1', null);
 Steam.overlay('achievements');
 ```
+
+## Xbox
+
+**Build → Build for Xbox** makes either a web game for Microsoft Edge on Xbox or the **Windows & Xbox app**: a Visual Studio project (UWP, C#) that runs the game in WebView2. The app is one package for PC and Xbox, and the one to submit to the Microsoft Store.
+
+With your Xbox in Dev Mode and Visual Studio 2022 with the *Universal Windows Platform development* workload on your PC, **Build and run on Xbox** builds the package, installs it on the console and starts it:
+
+1. On the Xbox, open Dev Home. Under Remote Access, turn on Device Portal, set a user name and password, and note the IP address.
+2. In Ignite3D, choose Windows & Xbox app, enter the IP, user name and password, and press **Connect**.
+3. Press **Build and run on Xbox**. Each build installs over the last one and keeps the game's saves.
+
+The password stays in memory until Ignite3D closes. Ignite3D remembers the console's security certificate and sends nothing to a console whose certificate has changed until you press **Trust this console**. Once, in Dev Home, set the game's App type to Game for the console's full memory and graphics.
 
 ## How updates work
 
