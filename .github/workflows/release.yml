@@ -3,6 +3,8 @@
 # In-app updates don't use this: Ignite3D reads updates/latest.json and the update .exe in updates/ on main.
 #
 # To make a release, push a branch named release/vX.Y.Z (started from main) with the files in release-files/:
+# (A branch named release/<other-tag>, e.g. release/cef-152.0.13, makes a plain release with that tag for
+# runtime downloads; it is never marked Latest and gets no version notes.)
 #   - files over 100 MB split into parts: Ignite3D-Setup-X.Y.Z.exe.part00, .part01, ... (smaller files as they are)
 #   - SHA256SUMS: sha256sum output for the joined files (pushed last; until it's there the run does nothing)
 #   - notes.md (optional): the release notes. Without it the notes come from updates/latest.json.
@@ -12,7 +14,7 @@ name: Release
 
 on:
   push:
-    branches: ['release/v*']
+    branches: ['release/*']
 
 permissions:
   contents: write
@@ -35,8 +37,9 @@ jobs:
           BRANCH: ${{ github.ref_name }}
         run: |
           set -euo pipefail
-          VER="${BRANCH#release/v}"
-          TAG="v$VER"
+          TAG="${BRANCH#release/}"
+          VER="${TAG#v}"
+          if [ "$TAG" = "v$VER" ]; then VERSIONED=true; else VERSIONED=false; fi
           F=release-files
           if [ ! -f "$F/SHA256SUMS" ]; then
             echo "No $F/SHA256SUMS yet, so there's nothing to do."
@@ -57,7 +60,7 @@ jobs:
 
           LATEST_VER="$(jq -r .version updates/latest.json)"
           UPD="updates/Ignite3D-Update-$VER.exe"
-          if [ -f "$UPD" ]; then
+          if [ "$VERSIONED" = true ] && [ -f "$UPD" ]; then
             cp "$UPD" out/
             if [ "$LATEST_VER" = "$VER" ]; then
               echo "$(jq -r .sha256 updates/latest.json)  Ignite3D-Update-$VER.exe" | (cd out && sha256sum -c -)
@@ -66,9 +69,11 @@ jobs:
 
           sum() { sha256sum "out/$1" | cut -d' ' -f1; }
           {
+            if [ "$VERSIONED" = true ]; then
             echo "**New to Ignite3D?** Download **Ignite3D-Setup-$VER.exe** below and run it."
             echo "**Already have Ignite3D?** You don't need anything here: it offers this version from **Help → Check for Updates**."
             echo
+            fi
             if [ -f "$F/notes.md" ]; then
               cat "$F/notes.md"
             elif [ "$LATEST_VER" = "$VER" ]; then
@@ -79,8 +84,10 @@ jobs:
             if [ -f "out/Ignite3D-Setup-$VER.exe" ]; then echo "- **Ignite3D-Setup-$VER.exe**: the installer."; fi
             if [ -f "out/Ignite3D-$VER-win-x64.zip" ]; then echo "- **Ignite3D-$VER-win-x64.zip**: the same app without an installer. Unzip it and run \`Ignite3D.exe\`."; fi
             if [ -f "out/Ignite3D-Update-$VER.exe" ]; then echo "- **Ignite3D-Update-$VER.exe**: the update Ignite3D installs itself. You don't need to run it."; fi
+            if [ "$VERSIONED" = true ]; then
             echo
             echo "The installer isn't code-signed yet, so Windows SmartScreen may warn you. Choose **More info → Run anyway**."
+            fi
             echo
             echo "## Checksums"
             # The update's hash comes first: Ignite3D's fallback update check reads the first sha256 in the notes.
@@ -92,12 +99,13 @@ jobs:
           } > release-notes.md
           cat release-notes.md
 
-          if [ "$LATEST_VER" = "$VER" ]; then LATEST=true; else LATEST=false; fi
+          if [ "$VERSIONED" = true ] && [ "$LATEST_VER" = "$VER" ]; then LATEST=true; else LATEST=false; fi
+          if [ "$VERSIONED" = true ]; then TITLE="Ignite3D $VER"; else TITLE="$TAG"; fi
           if gh release view "$TAG" > /dev/null 2>&1; then
             gh release upload "$TAG" out/* --clobber
-            gh release edit "$TAG" --title "Ignite3D $VER" --notes-file release-notes.md --latest="$LATEST"
+            gh release edit "$TAG" --title "$TITLE" --notes-file release-notes.md --latest="$LATEST"
           else
             BASE="$(git merge-base HEAD origin/main)"
-            gh release create "$TAG" out/* --title "Ignite3D $VER" --notes-file release-notes.md --target "$BASE" --latest="$LATEST"
+            gh release create "$TAG" out/* --title "$TITLE" --notes-file release-notes.md --target "$BASE" --latest="$LATEST"
           fi
           git push origin --delete "$BRANCH"
