@@ -15,13 +15,13 @@
       "file": "Ignite3D-2.18.0-mac-x64.zip",
       "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.18.0/Ignite3D-2.18.0-mac-x64.zip",
       "size": 352392276,
-      "sha256": "0a37009a37860c91b6b360db84d61fd0de0bf7f28c20be1240b21a8fe34de1a1"
+      "sha256": "8b5b375faff225e0a79e256c3e1d7fcbef7a09f65479c2d540cb69fdf8959489"
     },
     "mac-arm64": {
       "file": "Ignite3D-2.18.0-mac-arm64.zip",
       "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.18.0/Ignite3D-2.18.0-mac-arm64.zip",
       "size": 341018069,
-      "sha256": "a9f9328a33e369959b89179f84b4482ad1fae5526179157bff37b6321afd8f2e"
+      "sha256": "4ccee9ce4ff10b08b2cabdd8dcf3caf11d89df3615c8ee6bfc276c1fb3d462de"
     }
   }
 }
