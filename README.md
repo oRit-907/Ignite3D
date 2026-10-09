@@ -1,6 +1,6 @@
 # Ignite3D
 
-Ignite3D is a 3D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge, or as an app on a console in Dev Mode), Android and the web.
+Ignite3D is a 3D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge, or as an app on a console in Dev Mode), Android and the web, and plays them in a real Android emulator inside the editor.
 
 ## Download
 
@@ -52,6 +52,14 @@ await Steam.cloudSave('slot1', { level: 3 });
 const save = await Steam.cloudLoad('slot1', null);
 Steam.overlay('achievements');
 ```
+
+## Android emulator
+
+In the desktop app, **Preview → Android** runs your game's real APK on Android, in Google's Android Emulator, with its screen right in the editor: click to touch, type on the keyboard, and use Back, Home, rotate and the device menu under it. The game's console messages show in Ignite3D's Console. Set it up once in **Preview → Android Emulator…**:
+
+- **Android OS:** use your own (a system image `.zip` like the ones Android Studio downloads, or its unpacked folder, which is used where it is and takes no extra space), use the Android SDK already on your computer (Android Studio's), or download one from Google. The AOSP images are the smallest (about 0.7–0.9 GB). Images are unpacked sparse, so empty space inside them takes no disk space.
+- **Emulator program:** from your Android SDK, or downloaded from Google once (about 350–490 MB). Google's license is shown before any download.
+- **Needs:** hardware virtualization (Windows: turn on *Windows Hypervisor Platform* in Windows features; Linux: KVM), and about 7.5 GB free where the emulator keeps Android's storage the first time it starts (it only uses what Android writes). **Storage** in the same window shows what's used and removes it; **Change folder…** puts it on another drive.
 
 ## Xbox
 
