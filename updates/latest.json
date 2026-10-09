@@ -1,7 +1,7 @@
 {
-  "version": "2.13.0",
-  "file": "Ignite3D-Update-2.13.0.exe",
-  "size": 5234787,
-  "sha256": "68c92fe02fb888ff3fb1d8b70bbb1a5184ed08974320ae5df46c794dfbadce02",
-  "notes": "## Web games: project models\n- Web Game code can now use the project's 3D models. Put `/* @ignite-models: MyGame- */` in the game code and every model asset whose name starts with `MyGame-` is packed into the game.\n- Load one with `await IgniteModels.load('MyGame-Car')` (the same result as three.js's GLTFLoader). `IgniteModels.names()` lists them.\n- When a model has several versions (`MyGame-Car`, `MyGame-Car-v2`, `MyGame-Car-v3`), the highest number is used, so importing a newer copy replaces the old one without changing the code.\n- Works in Play mode, web exports, Android builds, and Windows, Steam, Microsoft Store and Xbox builds that use the Web player.\n- The Web Game inspector lists the models that will be packed in."
+  "version": "2.14.0",
+  "file": "Ignite3D-Update-2.14.0.exe",
+  "size": 5238223,
+  "sha256": "19810bd1c05aeaa09b14d660c88c875d1f55ceb03cf5e7100126966aa6796522",
+  "notes": "## Preview: play as on Android, Xbox or Windows\n- New **Preview** menu. Press Play inside a device frame: **Android** (phone, small phone or tablet; touch controls; the orientation from Build for Android, with Rotate when it's Auto), **Xbox** (a 1080p TV with controller input and no mouse, like Edge on Xbox, plus a TV-safe-area guide) or **Windows** (a window at the size from Build for Windows).\n- The game is fully playable in the frame, at the real device's screen size. The bar under the frame switches device, rotates, and exits. The choice sticks: Play keeps using it until you pick Editor View.\n- Claude can start a preview too (`play_control` with `preview`).\n- Fixed: pointer and joystick input stay exact when the game is scaled."
 }
