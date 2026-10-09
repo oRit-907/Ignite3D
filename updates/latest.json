@@ -1,7 +1,7 @@
 {
-  "version": "2.16.0",
-  "file": "Ignite3D-Update-2.16.0.exe",
-  "size": 5245389,
-  "sha256": "71afe27f656b336df116face8f21721651ca5c74576970a8fcad6788f9fff120",
-  "notes": "## Fixed: updates that never finished\n- The updater waited for Ignite3D to close, but counted the background process the Claude app keeps running (the Ignite3D bridge), so it kept saying \"Ignite3D is open\" after the editor had closed. It now ignores that process. This update already uses the fixed updater.\n\n## Code tab\n- New **Code** tab next to Inspector and Scene: every code file in the project in one place. Scripts and Web files (HTML, CSS, JS) with line counts, errors and whether they're in use; click one to edit it. Buttons make a new script, HTML, CSS or JS file."
+  "version": "2.17.0",
+  "file": "Ignite3D-Update-2.17.0.exe",
+  "size": 3617121,
+  "sha256": "8781ec69343be574051429e999fc9cfdadc1c866bc873cad26a57beab227a8f1",
+  "notes": "## The native player is now a real player\n- **Build for Windows \u2192 Player: Native** now builds your game on the Chromium Embedded Framework: a small C program (no Node, no Electron) that opens a window with your game page, exactly as it runs in the editor. Everything the Web player runs, runs here too: Web Game projects, multiplayer and cloud saves, ads, HTML UI, audio.\n- The first native build downloads the Chromium runtime once (167 MB, checked against its SHA-256) and keeps it; later builds are instant. Builds are about 350 MB, like the Web player's.\n- Window size, full screen (F11 / Alt+Enter), resizable, icon and file details come from the build settings. Saves live in the user's app-data folder under \"Ignite3D Games\".\n- The earlier scene-only C++ player is no longer built; its source stays in the repo.\n- Steam builds still use the Web player."
 }
