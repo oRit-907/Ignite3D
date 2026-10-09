@@ -1,7 +1,7 @@
 {
-  "version": "2.15.0",
-  "file": "Ignite3D-Update-2.15.0.exe",
-  "size": 5242930,
-  "sha256": "ea60a412cc7e7298478b5844ed555e8a2334fecaca6eee62b0ae4c50c8ff5fab",
-  "notes": "## Xbox app\n- **Build \u2192 Build for Xbox** now has two kinds. **Web game** is the Edge build as before. **Xbox app** writes a Visual Studio project (UWP, C#) that runs the game in WebView2, the Chromium engine Xbox ships. Open the .sln in Visual Studio 2022 (Universal Windows Platform workload) and press F5: it runs on the PC right away, deploys to an Xbox in Dev Mode, and can be sold on the Xbox Store through the Xbox Live Creators Program.\n- It uses the name, version, icon and Store identity from Build for Windows. README-Xbox-app.txt has every step for the PC, Dev Mode and the Store."
+  "version": "2.15.1",
+  "file": "Ignite3D-Update-2.15.1.exe",
+  "size": 5244249,
+  "sha256": "366806dac3acb5aa4448e2a1e37ba9417775f27b9c68646366b6d90110545a9e",
+  "notes": "## Microsoft Store builds\n- A Store build now writes **README-Store.txt** next to the .msix: the submission steps, and the note to paste into Partner Center's \"Notes for certification\" when the Windows App Certification Kit flags \"Blocked executables\". That result is expected for Chromium-based apps (the strings it finds are inside Chromium's own files; the game launches no programs)."
 }
