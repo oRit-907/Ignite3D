@@ -1,27 +1,7 @@
 {
-  "version": "2.19.0",
-  "file": "Ignite3D-Update-2.19.0.exe",
-  "size": 5333116,
-  "sha256": "c54079c27d44319bca1f4a7e74840e2cb439f3fa9a6c0094030ce09d507cbed6",
-  "notes": "## Build and run on Xbox\n- With your Xbox in Dev Mode, **Build \u2192 Build for Xbox \u2192 Windows & Xbox app** has **Build and run on Xbox**: Ignite3D builds the package with your Visual Studio (Universal Windows Platform workload), installs it on the console through Device Portal and starts it.\n- Enter the console's IP address and the Device Portal user name and password from Dev Home \u2192 Remote Access, then press **Connect**. The password stays in memory until Ignite3D closes.\n- Each console build gets the next version number, so it installs over the last one and keeps the game's saves. **Build package** makes the sideload package without installing it.\n- Ignite3D remembers the console's security certificate and sends nothing to a console whose certificate has changed until you press **Trust this console**.\n- The Xbox app uses the TV's full 1920\u00d71080, keeps the controller on the game (B no longer leaves it), plays sound without a click, opens links outside the game and can host online games on your network.\n- Claude can build and run the game on the console too, once you've connected in the dialog.\n\n## Linux and macOS\n- This release has the Linux AppImage and the macOS app (Apple silicon and Intel), which were missing from the 2.18.0 release. **Help \u2192 Check for Updates** keeps them up to date.",
-  "platforms": {
-    "linux": {
-      "file": "Ignite3D-2.19.0-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.19.0/Ignite3D-2.19.0-linux-x64.AppImage",
-      "size": 129137803,
-      "sha256": "d0cf48cc2356ffcac4c22cc10272c23397ef9374592ea6c0be81774f0c8dc2ac"
-    },
-    "mac": {
-      "file": "Ignite3D-2.19.0-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.19.0/Ignite3D-2.19.0-mac-x64.zip",
-      "size": 352404191,
-      "sha256": "851c4c536f344418522537d134bf69d286bcea9f9ef580c2c9ae85ddd64af1ab"
-    },
-    "mac-arm64": {
-      "file": "Ignite3D-2.19.0-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.19.0/Ignite3D-2.19.0-mac-arm64.zip",
-      "size": 341029984,
-      "sha256": "3c2b98b008b50c877068bc256cc15f09cbdf73f63b43c2aaab293ce6f519cbc2"
-    }
-  }
+  "version": "2.20.0",
+  "file": "Ignite3D-Update-2.20.0.exe",
+  "size": 8073214,
+  "sha256": "ea8f34af617381560e3e4e70633c5d84bca1b2a9ddc07b4a094c9dd35336fc92",
+  "notes": "## The C++ player runs HTML games\n- **Build for Windows \u2192 Player: C++** now builds projects with a **Web Game** object, not just scenes. Your HTML game runs in a small C++/OpenGL player (about 13 MB, no browser engine inside) instead of a 250\u2013350 MB Chromium.\n- Pages look like they do in the editor: flex and grid layouts, fonts, SVG icons, gradients, shadows, blur behind panels and 2D canvases.\n- Sound plays through the player's own Web Audio, matching the browser.\n- Online play works: fetch, WebSockets and WebRTC data channels (PeerJS games can host and join races with players in browsers). Sign-in links open in the player's default browser.\n- Ads don't show in C++ builds; Ignite3D tells you when a project has ads turned on. Steam builds still use the Web player.\n\n## Notes\n- This update is for Windows. The Linux and macOS versions stay on 2.19.0 for now."
 }
