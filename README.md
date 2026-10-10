@@ -30,6 +30,28 @@ ignite3d mcp configure claude-code    # also: claude, cursor, vscode, windsurf (
 
 To add the `ignite3d` command to your terminals, open the **Claude app** window in Ignite3D (the spark button) and click **Add the ignite3d command to terminals**. The old Ignite3D extension (`.mcpb`) is retired. If it's still installed in the Claude app, uninstall it there.
 
+## Scripting
+
+**New script** asks which language to use:
+
+- **JavaScript:** `class Player extends Behaviour { update(dt) { … } }`
+- **C#:** Unity-style MonoBehaviours. Classes, structs, generics, LINQ, coroutines and async/await, with GameObject, Transform, Rigidbody, Input, Physics, PlayerPrefs and SystemInfo. Public fields show in the Inspector.
+- **GDScript:** Godot 4 syntax, and Godot 3 forms. CharacterBody3D with `move_and_slide`, RigidBody3D and Area3D signals, timers, tweens, `await`, input actions, autoloads and `$Child` paths.
+- **Visual script:** a Blueprint-style node graph (events, flow, physics, sound, input, math), edited with mouse or touch.
+
+Every language runs wherever the game runs (web, Android, Windows, Xbox, the C++ player), errors point at the line or node, and Claude can write them all. **Window → Audio Mixer** sets up mixer groups. Scripts play sounds with `Audio.play`, `playAt` (3D) and `playMusic` (crossfades).
+
+## C++ player: DirectX 11, Vulkan, NVIDIA and AMD
+
+**Build for Windows → Player: C++** makes a small `.exe` that runs the game without a browser engine. **Graphics** picks what draws it:
+
+- **Auto (DirectX 11)**, **DirectX 11** or **Vulkan:** through [ANGLE](https://chromium.googlesource.com/angle/angle), the layer Chrome uses for WebGL on Windows. Its DLLs (about 13 MB) go next to the `.exe`.
+- **OpenGL:** the graphics driver's own OpenGL 3.3, with nothing extra.
+
+If the chosen renderer can't start on a PC, the game falls back (Vulkan → DirectX 11 → OpenGL) and `player.log` says why. **GPU** picks the fast GPU (default) or the power-saving one on laptops with NVIDIA Optimus or AMD switchable graphics. `player.log` lists every GPU and the one in use. Players can override both: `Game.exe --renderer vulkan --gpu power-saving`. Games read the GPU with `Engine.graphics`, `SystemInfo` (C#) or `RenderingServer` (GDScript).
+
+**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now.
+
 ## Online games
 
 **Build → Online** deploys Ignite Online, your own game server, to your Cloudflare account. You need a free Cloudflare account and an API token with *Workers Scripts: Edit*, plus *Cloudflare Realtime: Edit* for TURN relays. It gives your games:
@@ -65,7 +87,7 @@ In the desktop app, **Preview → Android** runs your game's real APK on Android
 
 **Build → Build for Xbox** makes either a web game for Microsoft Edge on Xbox or the **Windows & Xbox app**: a Visual Studio project (UWP, C#) that runs the game in WebView2. The app is one package for PC and Xbox, and the one to submit to the Microsoft Store.
 
-With your Xbox in Dev Mode and Visual Studio 2022 with the *Universal Windows Platform development* workload on your PC, **Build and run on Xbox** builds the package, installs it on the console and starts it:
+With your Xbox in Dev Mode and Visual Studio 2022 or newer with the *Universal Windows Platform development* workload and a Windows SDK on your PC, **Build and run on Xbox** builds the package, installs it on the console and starts it:
 
 1. On the Xbox, open Dev Home. Under Remote Access, turn on Device Portal, set a user name and password, and note the IP address.
 2. In Ignite3D, choose Windows & Xbox app, enter the IP, user name and password, and press **Connect**.

@@ -1,7 +1,27 @@
 {
-  "version": "2.22.0",
-  "file": "Ignite3D-Update-2.22.0.exe",
-  "size": 24837359,
-  "sha256": "05d720e90c95c3d3f2621d08c9b89e54aa220cdfe4f6c75a4901b1a853d7dd37",
-  "notes": "## C# scripting\n- **New script** asks **C# or JavaScript**. C# scripts are Unity-style MonoBehaviours (Start, Update, OnTriggerEnter, coroutines, async/await, LINQ, generics and more), compiled to JavaScript so they run in every player: web, Android, Windows, Xbox and the C++ player.\n- Familiar Unity types: GameObject, Transform, Rigidbody, Collider, Camera, AudioSource, Animator, Input, Time, Mathf, Physics, PlayerPrefs, JsonUtility, List and Dictionary.\n- Public fields show in the Inspector, .cs files can be imported, and the code editor checks C# and jumps to errors. Claude's write_script takes C# too.\n- Triggers now fire for kinematic bodies.\n\n## Audio\n- Mixer groups and an **Audio Mixer** window, 3D sound (min/max distance, rolloff), pitch and random pitch, fade in, music crossfades, and Audio.play/playMusic/setVolume/mute for scripts.\n- Waveform previews in Assets; FLAC, AAC, Opus and WebM import.\n- The C++ player gets real 3D panning and an analyser that match the browser.\n\n## C++ player\n- **Build for Android \u2192 Player: C++ (experimental)**: a small native Android app (OpenGL ES 3) with ads, sign-in, keyboard, gamepads and touch. Its JavaScript engine has no JIT, so busy games can run slower than the WebView player. Keep using the WebView player for store releases for now.\n- Pages in the C++ player (Windows and Android) match the browser more closely: inline styles can be changed from scripts, flex and grid items keep their content size, backgrounds reach under see-through borders, page styles beat the built-in defaults, and placeholder text is grey.\n- Scene games get the joystick and A/B touch buttons drawn natively.\n\n## Also\n- The Android emulator allows slow installs (up to 6 minutes) and says when adb timed out.\n- This update is for Windows. The Linux and macOS versions stay on 2.21.0 for now."
+  "version": "2.23.0",
+  "file": "Ignite3D-Update-2.23.0.exe",
+  "size": 29690940,
+  "sha256": "f3e701be5666582904e3c65e573a213e76513e517c8ab77159daf2a62a33fafc",
+  "notes": "## GDScript and visual scripts\n- **New script** now offers **GDScript** (Godot 4 syntax, and Godot 3 forms) and **Visual script** (Blueprint-style node graphs) next to JavaScript and C#.\n- **GDScript:** CharacterBody3D with move_and_slide, RigidBody3D and Area3D signals, timers, tweens, await, input actions, autoloads, $Child paths and saves.\n- **Visual scripts:** wire events, flow, physics, sound, input and math nodes in a graph editor that works with mouse or touch.\n- Both run everywhere your game does (web, Android, Windows, Xbox and the C++ players), errors point at the line or node, and Claude can write them.\n\n## C++ player: DirectX 11, Vulkan, NVIDIA and AMD\n- Build for Windows \u2192 Player: C++ now has **Graphics**: Auto (DirectX 11), DirectX 11, Vulkan or OpenGL. DirectX 11 and Vulkan run through ANGLE, the layer Chrome uses for WebGL on Windows. If the choice can't start on a PC, the game falls back (Vulkan \u2192 DirectX 11 \u2192 OpenGL) and player.log says why.\n- **GPU:** on laptops with NVIDIA Optimus or AMD switchable graphics, games run on the fast GPU, or on the power-saving one if you pick it. player.log lists every GPU and the one in use, and players can override both with --renderer and --gpu.\n- Games can read the GPU: Engine.graphics, SystemInfo in C#, RenderingServer in GDScript, and WEBGL_debug_renderer_info in HTML games.\n- DirectX 11 adds about 13 MB next to the .exe; OpenGL adds nothing.\n\n## Xbox app fixes\n- Build package failed with \"The type or namespace name 'ApplicationModel' does not exist in the namespace 'Windows'\" when Visual Studio didn't have Windows SDK 10.0.22621. It now builds with the newest Windows SDK you have, shows it in the Build for Xbox window, and tells you what to install if there's none.\n- Build package then failed with \"Unknown member 'DefaultBackgroundColor' on element 'WebView2'\": that property doesn't exist in WinUI 2. The black background is now set the way WinUI 2 supports.\n\n## Also\n- HTML games in the C++ player keep their text on PCs without the usual Windows fonts.\n- Includes 2.22.0: C# scripting, the Audio Mixer and 3D sound, the experimental Android C++ player, and closer-to-the-browser pages in the C++ player. Linux and macOS get all of it with this update.",
+  "platforms": {
+    "linux": {
+      "file": "Ignite3D-2.23.0-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.23.0/Ignite3D-2.23.0-linux-x64.AppImage",
+      "size": 156716465,
+      "sha256": "8265f99741680d8ffc38ef4800f22f98a5c4e12e416c3cb7032936b6f18c4e1a"
+    },
+    "mac": {
+      "file": "Ignite3D-2.23.0-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.23.0/Ignite3D-2.23.0-mac-x64.zip",
+      "size": 379425429,
+      "sha256": "c4410b73d735bc2ee512a20af42aa424d51f5cfb2fc6c94af579a2e6ba483693"
+    },
+    "mac-arm64": {
+      "file": "Ignite3D-2.23.0-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.23.0/Ignite3D-2.23.0-mac-arm64.zip",
+      "size": 368051222,
+      "sha256": "5a1ad36a5b4d00e7c2be9bbaf2882167fa3341556ac2365e2b043d7a1f8055de"
+    }
+  }
 }
