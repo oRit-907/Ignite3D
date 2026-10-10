@@ -1,27 +1,7 @@
 {
-  "version": "2.23.0",
-  "file": "Ignite3D-Update-2.23.0.exe",
-  "size": 29690940,
-  "sha256": "f3e701be5666582904e3c65e573a213e76513e517c8ab77159daf2a62a33fafc",
-  "notes": "## GDScript and visual scripts\n- **New script** now offers **GDScript** (Godot 4 syntax, and Godot 3 forms) and **Visual script** (Blueprint-style node graphs) next to JavaScript and C#.\n- **GDScript:** CharacterBody3D with move_and_slide, RigidBody3D and Area3D signals, timers, tweens, await, input actions, autoloads, $Child paths and saves.\n- **Visual scripts:** wire events, flow, physics, sound, input and math nodes in a graph editor that works with mouse or touch.\n- Both run everywhere your game does (web, Android, Windows, Xbox and the C++ players), errors point at the line or node, and Claude can write them.\n\n## C++ player: DirectX 11, Vulkan, NVIDIA and AMD\n- Build for Windows \u2192 Player: C++ now has **Graphics**: Auto (DirectX 11), DirectX 11, Vulkan or OpenGL. DirectX 11 and Vulkan run through ANGLE, the layer Chrome uses for WebGL on Windows. If the choice can't start on a PC, the game falls back (Vulkan \u2192 DirectX 11 \u2192 OpenGL) and player.log says why.\n- **GPU:** on laptops with NVIDIA Optimus or AMD switchable graphics, games run on the fast GPU, or on the power-saving one if you pick it. player.log lists every GPU and the one in use, and players can override both with --renderer and --gpu.\n- Games can read the GPU: Engine.graphics, SystemInfo in C#, RenderingServer in GDScript, and WEBGL_debug_renderer_info in HTML games.\n- DirectX 11 adds about 13 MB next to the .exe; OpenGL adds nothing.\n\n## Xbox app fixes\n- Build package failed with \"The type or namespace name 'ApplicationModel' does not exist in the namespace 'Windows'\" when Visual Studio didn't have Windows SDK 10.0.22621. It now builds with the newest Windows SDK you have, shows it in the Build for Xbox window, and tells you what to install if there's none.\n- Build package then failed with \"Unknown member 'DefaultBackgroundColor' on element 'WebView2'\": that property doesn't exist in WinUI 2. The black background is now set the way WinUI 2 supports.\n\n## Also\n- HTML games in the C++ player keep their text on PCs without the usual Windows fonts.\n- Includes 2.22.0: C# scripting, the Audio Mixer and 3D sound, the experimental Android C++ player, and closer-to-the-browser pages in the C++ player. Linux and macOS get all of it with this update.",
-  "platforms": {
-    "linux": {
-      "file": "Ignite3D-2.23.0-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.23.0/Ignite3D-2.23.0-linux-x64.AppImage",
-      "size": 156716465,
-      "sha256": "8265f99741680d8ffc38ef4800f22f98a5c4e12e416c3cb7032936b6f18c4e1a"
-    },
-    "mac": {
-      "file": "Ignite3D-2.23.0-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.23.0/Ignite3D-2.23.0-mac-x64.zip",
-      "size": 379425429,
-      "sha256": "c4410b73d735bc2ee512a20af42aa424d51f5cfb2fc6c94af579a2e6ba483693"
-    },
-    "mac-arm64": {
-      "file": "Ignite3D-2.23.0-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.23.0/Ignite3D-2.23.0-mac-arm64.zip",
-      "size": 368051222,
-      "sha256": "5a1ad36a5b4d00e7c2be9bbaf2882167fa3341556ac2365e2b043d7a1f8055de"
-    }
-  }
+  "version": "2.23.1",
+  "file": "Ignite3D-Update-2.23.1.exe",
+  "size": 29690812,
+  "sha256": "b5ef1e63d9d824edca049e00b136e674256beda752ef431cb143b85657d5ad08",
+  "notes": "## Xbox app: controllers and full screen\n- **Controllers work in the Xbox app** (Build for Xbox \u2192 Windows & Xbox app), on Xbox and on PC. Windows' WebView2 doesn't pass Xbox controllers to a game inside an app, so the app now reads them itself and hands them to your game's Gamepad API: buttons, triggers, sticks and rumble, up to four controllers.\n- **Menus work with the controller:** no mouse cursor appears over the game, and controller buttons no longer also act as key presses (which moved or clicked menus twice).\n- **Full screen on TVs:** the game fills the whole TV instead of sitting inside the TV-safe border.\n- Rebuild your Xbox app (Build \u2192 Build for Xbox \u2192 Build and run on Xbox) to get these.\n\n## Also\n- Claude's tools keep working while a Web Game is playing in the editor (before, they answered \"Ignite3D is still starting\" until a restart).\n- Includes 2.23.0: GDScript and visual scripts, the C++ player on DirectX 11 / Vulkan with GPU selection, and the Xbox app build fixes.\n- This update is for Windows. The Linux and macOS versions stay on 2.23.0 for now."
 }
