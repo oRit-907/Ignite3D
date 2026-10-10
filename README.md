@@ -52,6 +52,16 @@ If the chosen renderer can't start on a PC, the game falls back (Vulkan → Dire
 
 **Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now.
 
+## Xbox services and the Microsoft Store (Microsoft GDK)
+
+**Build for Windows → Player: C++ → Xbox services** gives Windows games the player's Xbox sign-in and gamertag, title-managed stats and leaderboards, rich presence, achievements (ID@Xbox titles) and Xbox cloud saves. Scripts use `Xbox.signIn()`, `Xbox.setStat`, `Xbox.leaderboard`, `Xbox.setPresence`, `Xbox.unlock` and `Xbox.cloudSave` / `Xbox.cloudLoad` in any language. In the editor they run in a test mode, so you can try them before the game is set up. **Xbox cloud saves** also keeps the game's `localStorage` in the player's Xbox cloud.
+
+You need the free [Microsoft GDK](https://github.com/microsoft/GDK/releases) on your PC (`winget install Microsoft.Gaming.GDK`) and your game set up in Partner Center (the Xbox Creators Program is open to everyone; achievements need ID@Xbox). Enter the Title ID, SCID and MSA App ID; the build copies the GDK's runtime from your install and writes `MicrosoftGame.config`. Ignite3D doesn't include any part of the GDK. Under the GDK's license, games that use it are published through the Microsoft Store.
+
+**Package: Microsoft Store (GDK)** makes the `.msixvc` with the GDK's `makepkg`: a test package that installs on your PC with one button, or a package encrypted for upload in Partner Center.
+
+The C++ player reads controllers through **Microsoft GameInput** on Windows (Xbox, PlayStation and more), with rumble and the Xbox controller's trigger rumble: `Input.vibrate(strong, weak, ms, leftTrigger, rightTrigger)`. PCs without GameInput use the standard controller driver.
+
 ## Online games
 
 **Build → Online** deploys Ignite Online, your own game server, to your Cloudflare account. You need a free Cloudflare account and an API token with *Workers Scripts: Edit*, plus *Cloudflare Realtime: Edit* for TURN relays. It gives your games:
