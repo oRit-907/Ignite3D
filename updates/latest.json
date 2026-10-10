@@ -1,7 +1,7 @@
 {
-  "version": "2.23.1",
-  "file": "Ignite3D-Update-2.23.1.exe",
-  "size": 29690812,
-  "sha256": "b5ef1e63d9d824edca049e00b136e674256beda752ef431cb143b85657d5ad08",
-  "notes": "## Xbox app: controllers and full screen\n- **Controllers work in the Xbox app** (Build for Xbox \u2192 Windows & Xbox app), on Xbox and on PC. Windows' WebView2 doesn't pass Xbox controllers to a game inside an app, so the app now reads them itself and hands them to your game's Gamepad API: buttons, triggers, sticks and rumble, up to four controllers.\n- **Menus work with the controller:** no mouse cursor appears over the game, and controller buttons no longer also act as key presses (which moved or clicked menus twice).\n- **Full screen on TVs:** the game fills the whole TV instead of sitting inside the TV-safe border.\n- Rebuild your Xbox app (Build \u2192 Build for Xbox \u2192 Build and run on Xbox) to get these.\n\n## Also\n- Claude's tools keep working while a Web Game is playing in the editor (before, they answered \"Ignite3D is still starting\" until a restart).\n- Includes 2.23.0: GDScript and visual scripts, the C++ player on DirectX 11 / Vulkan with GPU selection, and the Xbox app build fixes.\n- This update is for Windows. The Linux and macOS versions stay on 2.23.0 for now."
+  "version": "2.23.2",
+  "file": "Ignite3D-Update-2.23.2.exe",
+  "size": 29690434,
+  "sha256": "a27bee3bb9e230bbca1db6833c42b60f267bab79b9bb10a1d17fe1d782fd5326",
+  "notes": "## Web Games know when they're on Xbox\n- **window.IgniteHost** tells a Web Game where it runs, before its scripts start: `{ app: 'xbox-app', xbox: true }` in the Xbox app on a console, and `{ app: 'preview', xbox: true }` in **Preview \u2192 Xbox**, so Xbox-only settings (like a TV screen-area option) show up there too. Switching the preview to or from Xbox restarts a playing Web Game.\n- Rebuild your Xbox app (Build \u2192 Build for Xbox) to get it.\n\n## Includes 2.23.1\n- Controllers work in the Xbox app (on Xbox and PC), menus work with the controller, and the game fills the whole TV.\n- Claude's tools keep working while a Web Game plays in the editor.\n\n## Notes\n- This update is for Windows. The Linux and macOS versions stay on 2.23.0 for now."
 }
