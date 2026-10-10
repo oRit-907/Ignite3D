@@ -1,27 +1,27 @@
 {
-  "version": "2.24.0",
-  "file": "Ignite3D-Update-2.24.0.exe",
-  "size": 29760496,
-  "sha256": "6cadf8d84a9a00ccaa14b059ffc15bd8e521b41c9a63615cd482014ec8c3ca8a",
-  "notes": "## Xbox services (Microsoft GDK)\n- Build for Windows \u2192 Player: C++ \u2192 **Xbox services**: the player's Xbox sign-in and gamertag, title-managed stats and leaderboards, rich presence, achievements (ID@Xbox titles) and Xbox cloud saves.\n- Scripts use Xbox.signIn(), Xbox.setStat, Xbox.leaderboard, Xbox.setPresence, Xbox.unlock and Xbox.cloudSave / cloudLoad, in JavaScript, C# and GDScript. In the editor they run in a test mode, so you can try them before the game is set up in Partner Center.\n- **Xbox cloud saves** keeps the game's localStorage in the player's Xbox cloud, so progress follows them to another PC.\n- You need the free Microsoft GDK on your PC (github.com/microsoft/GDK, or winget install Microsoft.Gaming.GDK) and the Title ID, SCID and MSA App ID from Partner Center. The Xbox Creators Program is open to everyone; achievements need ID@Xbox. Ignite3D copies the GDK's runtime from your install and writes MicrosoftGame.config with the logos; it doesn't include any part of the GDK.\n\n## Microsoft Store (GDK) packages\n- New package type **Microsoft Store (GDK)**: an .msixvc made with your GDK's makepkg. Test packages install on this PC with one button (Developer Mode on); Store packages are encrypted for upload in Partner Center \u2192 Packages.\n- Under the GDK's license, games that use it are published through the Microsoft Store.\n\n## Controllers: Microsoft GameInput\n- The C++ player reads controllers through GameInput on Windows (Xbox, PlayStation and more), and rumble now works there, including the Xbox controller's trigger rumble: Input.vibrate(strong, weak, ms, leftTrigger, rightTrigger).\n- PCs without GameInput use the standard controller driver, as before.\n\n## Also\n- Claude's build_game can turn on Xbox services and make Microsoft Store (GDK) packages.\n\n## Includes 2.23.1 and 2.23.2\n- Controllers work in the Xbox app (on Xbox and PC), menus work with the controller, and the game fills the whole TV. Rebuild your Xbox app to get it.\n- **window.IgniteHost** tells a Web Game where it runs ({ app: 'xbox-app', xbox: true } in the Xbox app, { app: 'preview', xbox: true } in Preview \u2192 Xbox).\n- Claude's tools keep working while a Web Game plays in the editor.\n- Linux and macOS get all of it with this update.",
+  "version": "2.24.1",
+  "file": "Ignite3D-Update-2.24.1.exe",
+  "size": 29763573,
+  "sha256": "83ef19f5d879ca034c64d3e2d22b3fc06df8b11be6bdf1ea744067e8438a905f",
+  "notes": "## Xbox app: sign in with the console's Microsoft account\n- Web Games in the Xbox app can sign the player in with the Microsoft account already on the console: `window.IgniteHost.microsoftToken({ clientId, interactive, scope })` asks Windows for a token, silently first, and with the sign-in window when `interactive` is true. It answers `{ idToken, accessToken }`, or says the player needs to sign in, cancelled, or what went wrong.\n- Build for Xbox and README-Xbox-app.txt show the redirect URI to add to your Azure app registration, worked out from your package family name.\n- Rebuild your Xbox app (Build \u2192 Build for Xbox) to get it.\n- Claude's guide documents window.IgniteHost again.\n\n## Includes 2.24.0\n- Xbox services for Windows games on the C++ player (Microsoft GDK): Xbox sign-in, stats and leaderboards, rich presence, achievements (ID@Xbox) and Xbox cloud saves, with Xbox.* in scripts.\n- Microsoft Store (GDK) packages (.msixvc), and GameInput controllers with rumble in the C++ player.\n- Linux and macOS get all of it with this update.",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.24.0-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.24.0/Ignite3D-2.24.0-linux-x64.AppImage",
-      "size": 156803192,
-      "sha256": "36fdcb75afc35561021048c5779c5519d1fbe8afa92a1a9566314eff34558fdf"
+      "file": "Ignite3D-2.24.1-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.24.1/Ignite3D-2.24.1-linux-x64.AppImage",
+      "size": 156807154,
+      "sha256": "3aba737ca275d60b08ea3acbd3062195388a77de9bad234cdc824bb1ec9b6c0a"
     },
     "mac": {
-      "file": "Ignite3D-2.24.0-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.24.0/Ignite3D-2.24.0-mac-x64.zip",
-      "size": 379516865,
-      "sha256": "f9f91364268b935c77536107ee11e6060a1018011fdc2b989bdf111143b445f9"
+      "file": "Ignite3D-2.24.1-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.24.1/Ignite3D-2.24.1-mac-x64.zip",
+      "size": 379520117,
+      "sha256": "d87db40e40fe820c1d926faeec8803845da2a27f59359677ee87dc08adae6094"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.24.0-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.24.0/Ignite3D-2.24.0-mac-arm64.zip",
-      "size": 368142658,
-      "sha256": "cce211fff65939e62bbb9715dcb76f2d222734b06a0aaba9eadfea4d8d2560e6"
+      "file": "Ignite3D-2.24.1-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.24.1/Ignite3D-2.24.1-mac-arm64.zip",
+      "size": 368145910,
+      "sha256": "0a7d62e80e39657a374652c2e138a25e384861944c68dd7d9c44e3c02e8adc8c"
     }
   }
 }
