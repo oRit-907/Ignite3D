@@ -1,27 +1,7 @@
 {
-  "version": "2.21.0",
-  "file": "Ignite3D-Update-2.21.0.exe",
-  "size": 8596190,
-  "sha256": "99a1c8aa5f5664c0ced002df71f883cadad295503e2d50f26cd9bfd8bade94c3",
-  "notes": "## Android emulator in the editor\n- In the desktop app, **Preview \u2192 Android** runs your game's real APK on Android, in Google's Android Emulator, with the phone's screen right in the editor. Click to touch, type on the keyboard, and use Back, Home, rotate and the device menu under it. The game's console messages show in Ignite3D's Console.\n- Set it up once in **Preview \u2192 Android Emulator\u2026**: use your own Android OS (a system image .zip, or its unpacked folder, which is used where it is with no copy), the Android SDK already on your computer (Android Studio's), or download one from Google (the AOSP images are the smallest, about 0.7\u20130.9 GB). Google's license is shown before any download, and downloads are checked.\n- Android images are unpacked sparse, so the empty space inside them takes no disk space. **Storage** shows what the emulator uses and removes it; **Change folder\u2026** puts new files on another drive.\n- Needs hardware virtualization (Windows: turn on \"Windows Hypervisor Platform\" in Windows features) and about 7.5 GB free where Android's storage goes the first time it starts.\n\n## Also\n- Claude's log tool works again.\n- Includes 2.20.0: the C++ player runs HTML games (Build for Windows \u2192 Player: C++).\n- The Linux AppImage and the macOS app (Apple silicon and Intel) are in this release.",
-  "platforms": {
-    "linux": {
-      "file": "Ignite3D-2.21.0-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.21.0/Ignite3D-2.21.0-linux-x64.AppImage",
-      "size": 133717355,
-      "sha256": "c96edaa4b7cef29ad59641322426143fa3412994dcd5b98dd5ed3fe49385dbb4"
-    },
-    "mac": {
-      "file": "Ignite3D-2.21.0-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.21.0/Ignite3D-2.21.0-mac-x64.zip",
-      "size": 356731670,
-      "sha256": "7bea99cd411ba58b44718e5e9693ced466065a3dc0121127d554755546ed132f"
-    },
-    "mac-arm64": {
-      "file": "Ignite3D-2.21.0-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.21.0/Ignite3D-2.21.0-mac-arm64.zip",
-      "size": 345357463,
-      "sha256": "5ba1a34c4e9d2398280f0e3d1254f6f4a7561d111545e042b1c1097bc4440468"
-    }
-  }
+  "version": "2.22.0",
+  "file": "Ignite3D-Update-2.22.0.exe",
+  "size": 24837359,
+  "sha256": "05d720e90c95c3d3f2621d08c9b89e54aa220cdfe4f6c75a4901b1a853d7dd37",
+  "notes": "## C# scripting\n- **New script** asks **C# or JavaScript**. C# scripts are Unity-style MonoBehaviours (Start, Update, OnTriggerEnter, coroutines, async/await, LINQ, generics and more), compiled to JavaScript so they run in every player: web, Android, Windows, Xbox and the C++ player.\n- Familiar Unity types: GameObject, Transform, Rigidbody, Collider, Camera, AudioSource, Animator, Input, Time, Mathf, Physics, PlayerPrefs, JsonUtility, List and Dictionary.\n- Public fields show in the Inspector, .cs files can be imported, and the code editor checks C# and jumps to errors. Claude's write_script takes C# too.\n- Triggers now fire for kinematic bodies.\n\n## Audio\n- Mixer groups and an **Audio Mixer** window, 3D sound (min/max distance, rolloff), pitch and random pitch, fade in, music crossfades, and Audio.play/playMusic/setVolume/mute for scripts.\n- Waveform previews in Assets; FLAC, AAC, Opus and WebM import.\n- The C++ player gets real 3D panning and an analyser that match the browser.\n\n## C++ player\n- **Build for Android \u2192 Player: C++ (experimental)**: a small native Android app (OpenGL ES 3) with ads, sign-in, keyboard, gamepads and touch. Its JavaScript engine has no JIT, so busy games can run slower than the WebView player. Keep using the WebView player for store releases for now.\n- Pages in the C++ player (Windows and Android) match the browser more closely: inline styles can be changed from scripts, flex and grid items keep their content size, backgrounds reach under see-through borders, page styles beat the built-in defaults, and placeholder text is grey.\n- Scene games get the joystick and A/B touch buttons drawn natively.\n\n## Also\n- The Android emulator allows slow installs (up to 6 minutes) and says when adb timed out.\n- This update is for Windows. The Linux and macOS versions stay on 2.21.0 for now."
 }
