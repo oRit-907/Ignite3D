@@ -95,7 +95,7 @@ In the desktop app, **Preview → Android** runs your game's real APK on Android
 
 ## Xbox
 
-**Build → Build for Xbox** makes either a web game for Microsoft Edge on Xbox or the **Windows & Xbox app**: a Visual Studio project (UWP, C#) that runs the game in WebView2. The app is one package for PC and Xbox, and the one to submit to the Microsoft Store.
+**Build → Build for Xbox** makes either a web game for Microsoft Edge on Xbox or the **Windows & Xbox app**: a Visual Studio project (UWP, C#) that runs the game. The app is one package for PC and Xbox, and the one to submit to the Microsoft Store. Its **Player** is either the **Web player** (WebView2, Microsoft Edge's engine) or the **C++ player** (Ignite3D's own engine on DirectX 11, with no browser engine). Games can sign the player in with the console's Microsoft account (`IgniteHost.microsoftToken`) and sell Microsoft Store add-ons (`IgniteHost.store`) in either player.
 
 With your Xbox in Dev Mode and Visual Studio 2022 or newer with the *Universal Windows Platform development* workload and a Windows SDK on your PC, **Build and run on Xbox** builds the package, installs it on the console and starts it:
 
