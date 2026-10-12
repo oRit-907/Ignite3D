@@ -1,27 +1,27 @@
 {
-  "version": "2.25.0",
-  "file": "Ignite3D-Update-2.25.0.exe",
-  "size": 34407071,
-  "sha256": "dbf5bcf05cfe7961a5e95cbe60b606716c6538fec98f1fcbfdc54ac7a671812d",
-  "notes": "## Xbox app: C++ player\n- **Build \u2192 Build for Xbox \u2192 Windows & Xbox app \u2192 Player** now offers the **C++ player** next to the Web player. It runs your game in Ignite3D's own engine on DirectX 11 (through ANGLE), with no browser engine, on Xbox in Dev Mode, dev kits and in the Microsoft Store package.\n- Controllers work through Windows.Gaming.Input, and `IgniteHost.microsoftToken` and `IgniteHost.store` work in the C++ player too.\n- `IgniteHost.player` tells a game which player it's in (`'web'` or `'cpp'`). The C++ player runs scripts in a small JavaScript interpreter, so games with heavy scripts run slower than in the Web player: test both on the console.\n- Post-processing (bloom, FXAA, vignette) now works in the C++ players on Windows and Xbox.\n\n## Microsoft Store add-ons in the Xbox app (2.24.2)\n- `IgniteHost.store.products()`, `purchase(storeId)`, `balance(storeId)` and `fulfill(storeId, quantity, trackingId)`: the app's add-ons from Partner Center with local prices, the Store's purchase screen, and Store-managed consumables.\n- Rebuild your Xbox app (Build \u2192 Build for Xbox) to get these.\n- Linux and macOS get all of it with this update.",
+  "version": "2.26.0",
+  "file": "Ignite3D-Update-2.26.0.exe",
+  "size": 35916811,
+  "sha256": "56c4c036aa5705384fe89eff05f375bd56d1109fd028e77988db468ee7d65b75",
+  "notes": "## Projects are folders, like Unity\n- **File \u2192 Save As Project Folder** saves a project as a folder: `MyGame.ignite`, `ProjectSettings/` and `Assets/`, with every asset as its own file (real PNG, WAV and GLB files, scripts as `.cs` / `.gd` / `.js`, prefabs and scenes as text) and a `.meta` that keeps its id, so it works with git and other tools.\n- Saving writes only what changed. Files you add to `Assets/` yourself are imported when the project opens; files Ignite3D can't use are left alone.\n- Projects in `.ignite.json` files still open and save as before (**Build \u2192 Export Project** makes one).\n- The **Assets** panel works like Unity's Project window: a folder tree, new / rename / delete folders, drag assets onto folders, search across every folder.\n\n## Multiple scenes\n- A project has scenes: switch them in the **Hierarchy**'s scene menu or by double-clicking one in **Assets \u2192 Scenes**; **File \u2192 New Scene**.\n- **Build \u2192 Scenes in Build** sets the scenes a game has and their order; a built game starts on the first, and Play starts on the open scene.\n- Scripts switch scenes while playing: `SceneManager.LoadScene(\"Level2\")`, `LoadSceneAsync`, `DontDestroyOnLoad` and `sceneLoaded` in C#, `this.loadScene()` / `this.dontDestroyOnLoad()` in JavaScript, `change_scene_to_file()` in GDScript, and the new **Load Scene** nodes in visual scripts.\n- Claude can manage scenes too (the `scenes` tool).\n\n## 2D projects\n- **File \u2192 New 2D Project** and the new 2D sample **Pixel Hop** (a pixel-art platformer): an orthographic camera, Sprite Renderers (sprite sheets, tiling, pixel filtering), 2D physics, the 2D Scene view and a 2D Add menu.\n- C# scripts in 2D projects get `Rigidbody2D`, `Collider2D`, `Physics2D`, `SpriteRenderer` and the 2D collision messages.\n\n## DirectX 12 for Windows games\n- Windows builds with the C++ player can pick **DirectX 12** as the renderer (Build \u2192 Build for Windows \u2192 Graphics).",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.25.0-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.25.0/Ignite3D-2.25.0-linux-x64.AppImage",
-      "size": 163001803,
-      "sha256": "a3cdb00325c4355e862db651f76f2e40090f7308bdbb99bbd2c1b72c4792b93a"
+      "file": "Ignite3D-2.26.0-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.0/Ignite3D-2.26.0-linux-x64.AppImage",
+      "size": 165089925,
+      "sha256": "933e19773600aa18ff26d9c42ede110f477dbdf7d2ede5c7e853c258a45ec78f"
     },
     "mac": {
-      "file": "Ignite3D-2.25.0-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.25.0/Ignite3D-2.25.0-mac-x64.zip",
-      "size": 385445306,
-      "sha256": "f991e60ce27615bcde191abcbdc91170b4ef18127e398d57db5e3bfa9a1bd7bf"
+      "file": "Ignite3D-2.26.0-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.0/Ignite3D-2.26.0-mac-x64.zip",
+      "size": 387419448,
+      "sha256": "84e188289772bb36c11fd599534c1dd18ebd0691ac8c4ad0fdfe86608de57f2d"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.25.0-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.25.0/Ignite3D-2.25.0-mac-arm64.zip",
-      "size": 374071099,
-      "sha256": "dc21dea7bc8db9767f410f3f01a1b82220957037e8b8710409863bf13c801a26"
+      "file": "Ignite3D-2.26.0-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.0/Ignite3D-2.26.0-mac-arm64.zip",
+      "size": 376045241,
+      "sha256": "2cd48ff2020149a2f34f870ec50ed23005b5b2b0acd2e66adef9a9e0ba2655e2"
     }
   }
 }

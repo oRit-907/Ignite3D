@@ -1,6 +1,6 @@
 # Ignite3D
 
-Ignite3D is a 3D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge, or as an app on a console in Dev Mode), Android and the web, and plays them in a real Android emulator inside the editor.
+Ignite3D is a 3D and 2D game engine and editor for Windows, macOS and Linux. It builds games for Windows, Steam, the Microsoft Store, Xbox (in Edge, or as an app on a console in Dev Mode), Android and the web, and plays them in a real Android emulator inside the editor.
 
 ## Download
 
@@ -11,6 +11,25 @@ From [Releases](../../releases/latest):
 - **macOS:** `Ignite3D-<version>-mac-arm64.zip` (Apple silicon) or `-mac-x64.zip` (Intel). Unzip and move Ignite3D.app to Applications. The app isn't notarized yet, so the first time right-click it → Open, or run `xattr -cr /Applications/Ignite3D.app`.
 
 Ignite3D checks this repository for updates on every system. When a new version is out, it offers to install it from **Help → Check for Updates**: Windows installs a small update, Linux replaces the AppImage, macOS replaces the app.
+
+## Projects and scenes
+
+Ignite3D saves a project as a folder, laid out like a Unity project, so it works with git and other tools:
+
+```
+MyGame/
+  MyGame.ignite                  open this (or the folder)
+  ProjectSettings/               build settings, scenes in the build, audio mixer
+  Assets/Scenes/Main.scene       a scene, one object per line (+ Main.scene.meta)
+  Assets/Scripts/Player.cs       scripts as source files
+  Assets/Textures/Ground.png     images, sounds and models as real files
+```
+
+Every asset has a `.meta` file that keeps its id, so objects keep their references when assets are renamed or moved. Files you copy into `Assets/` are imported when the project opens. The **Assets** panel works like Unity's Project window: folders, drag and drop, search. Single-file `.ignite.json` projects still open, save and export (**Build → Export Project**).
+
+A project can have many **scenes** (levels, menus): switch them in the Hierarchy, make one with **File → New Scene**, and set the game's scenes and their order in **Build → Scenes in Build**. Scripts load scenes while playing (`SceneManager.LoadScene("Level2")` and `DontDestroyOnLoad` in C#, `this.loadScene('Level2')` in JavaScript, `change_scene_to_file()` in GDScript, or the **Load Scene** node).
+
+**File → New 2D Project** makes a 2D game: an orthographic camera, Sprite Renderers (sprite sheets, tiling, pixel-art filtering), 2D physics and the 2D Scene view. **Pixel Hop** (File → Load Sample) is a 2D platformer to start from.
 
 ## Claude and other AI apps
 
@@ -35,7 +54,7 @@ To add the `ignite3d` command to your terminals, open the **Claude app** window 
 **New script** asks which language to use:
 
 - **JavaScript:** `class Player extends Behaviour { update(dt) { … } }`
-- **C#:** Unity-style MonoBehaviours. Classes, structs, generics, LINQ, coroutines and async/await, with GameObject, Transform, Rigidbody, Input, Physics, PlayerPrefs and SystemInfo. Public fields show in the Inspector.
+- **C#:** Unity-style MonoBehaviours. Classes, structs, generics, LINQ, coroutines and async/await, with GameObject, Transform, Rigidbody, Input, Physics, SceneManager, PlayerPrefs and SystemInfo (and Rigidbody2D, Physics2D and SpriteRenderer in 2D projects). Public fields show in the Inspector.
 - **GDScript:** Godot 4 syntax, and Godot 3 forms. CharacterBody3D with `move_and_slide`, RigidBody3D and Area3D signals, timers, tweens, `await`, input actions, autoloads and `$Child` paths.
 - **Visual script:** a Blueprint-style node graph (events, flow, physics, sound, input, math), edited with mouse or touch.
 
@@ -46,6 +65,7 @@ Every language runs wherever the game runs (web, Android, Windows, Xbox, the C++
 **Build for Windows → Player: C++** makes a small `.exe` that runs the game without a browser engine. **Graphics** picks what draws it:
 
 - **Auto (DirectX 11)**, **DirectX 11** or **Vulkan:** through [ANGLE](https://chromium.googlesource.com/angle/angle), the layer Chrome uses for WebGL on Windows. Its DLLs (about 13 MB) go next to the `.exe`.
+- **DirectX 12:** ANGLE's DirectX 11 renderer on a DirectX 12 device (Windows 10 and 11); falls back to DirectX 11.
 - **OpenGL:** the graphics driver's own OpenGL 3.3, with nothing extra.
 
 If the chosen renderer can't start on a PC, the game falls back (Vulkan → DirectX 11 → OpenGL) and `player.log` says why. **GPU** picks the fast GPU (default) or the power-saving one on laptops with NVIDIA Optimus or AMD switchable graphics. `player.log` lists every GPU and the one in use. Players can override both: `Game.exe --renderer vulkan --gpu power-saving`. Games read the GPU with `Engine.graphics`, `SystemInfo` (C#) or `RenderingServer` (GDScript).
