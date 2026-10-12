@@ -58,7 +58,9 @@ To add the `ignite3d` command to your terminals, open the **Claude app** window 
 - **GDScript:** Godot 4 syntax, and Godot 3 forms. CharacterBody3D with `move_and_slide`, RigidBody3D and Area3D signals, timers, tweens, `await`, input actions, autoloads and `$Child` paths.
 - **Visual script:** a Blueprint-style node graph (events, flow, physics, sound, input, math), edited with mouse or touch.
 
-Every language runs wherever the game runs (web, Android, Windows, Xbox, the C++ player), errors point at the line or node, and Claude can write them all. **Window → Audio Mixer** sets up mixer groups. Scripts play sounds with `Audio.play`, `playAt` (3D) and `playMusic` (crossfades).
+Every language runs wherever the game runs (web, Android, Windows, Xbox, the C++ player), errors point at the line or node, and Claude can write them all.
+
+**Native plugins** bring C or C++ code into a game. A plugin asset holds a WebAssembly build (for the web, the Android web app and the Web player) and a native build per platform (Windows, Linux, Android, and the Xbox app's C++ player), and games call it the same way everywhere: `const p = await IgnitePlugins.load('name'); p.call('fn', [numbers], [typedArrays])`. The plugin header `ignite_plugin.h` describes the format and how to build both kinds. **Window → Audio Mixer** sets up mixer groups. Scripts play sounds with `Audio.play`, `playAt` (3D) and `playMusic` (crossfades).
 
 ## C++ player: DirectX 11, Vulkan, NVIDIA and AMD
 
@@ -115,7 +117,7 @@ In the desktop app, **Preview → Android** runs your game's real APK on Android
 
 ## Xbox
 
-**Build → Build for Xbox** makes either a web game for Microsoft Edge on Xbox or the **Windows & Xbox app**: a Visual Studio project (UWP, C#) that runs the game. The app is one package for PC and Xbox, and the one to submit to the Microsoft Store. Its **Player** is either the **Web player** (WebView2, Microsoft Edge's engine) or the **C++ player** (Ignite3D's own engine on DirectX 11, with no browser engine). Games can sign the player in with the console's Microsoft account (`IgniteHost.microsoftToken`) and sell Microsoft Store add-ons (`IgniteHost.store`) in either player.
+**Build → Build for Xbox** makes either a web game for Microsoft Edge on Xbox or the **Windows & Xbox app**: a Visual Studio project (UWP, C#) that runs the game. The app is one package for PC and Xbox. It can go to the Microsoft Store for Windows PCs; the Store on Xbox no longer takes new UWP games, so games reach Xbox players through [ID@Xbox](https://www.xbox.com/games/id) and the Microsoft GDK. Its **Player** is either the **Web player** (WebView2, Microsoft Edge's engine) or the **C++ player** (Ignite3D's own engine on DirectX 11, with no browser engine). Games can sign the player in with the console's Microsoft account (`IgniteHost.microsoftToken`) and sell Microsoft Store add-ons (`IgniteHost.store`) in either player.
 
 With your Xbox in Dev Mode and Visual Studio 2022 or newer with the *Universal Windows Platform development* workload and a Windows SDK on your PC, **Build and run on Xbox** builds the package, installs it on the console and starts it:
 
@@ -123,7 +125,11 @@ With your Xbox in Dev Mode and Visual Studio 2022 or newer with the *Universal W
 2. In Ignite3D, choose Windows & Xbox app, enter the IP, user name and password, and press **Connect**.
 3. Press **Build and run on Xbox**. Each build installs over the last one and keeps the game's saves.
 
-The password stays in memory until Ignite3D closes. Ignite3D remembers the console's security certificate and sends nothing to a console whose certificate has changed until you press **Trust this console**. Once, in Dev Home, set the game's App type to Game for the console's full memory and graphics.
+The password stays in memory until Ignite3D closes. Ignite3D remembers the console's security certificate and sends nothing to a console whose certificate has changed until you press **Trust this console**. It keeps a list of consoles to switch between, and has **Launch**, **Uninstall from console** and **Show app log** buttons.
+
+**App or Game.** An Xbox runs a UWP app as an *App* (about 1 GB of memory and part of the graphics chip) unless it's a *Game* (about 5 GB and the whole chip). After starting the game, Ignite3D reads which one the console used and tells you. To run games as Games, open Device Portal in a browser, go to **Settings → Preference Settings** and check **Treat UWP apps as games by default**.
+
+The app writes `LocalState\app.log` on the console (the version, memory limit, App or Game, errors and crashes), and recovers when the Web player's browser engine stops. Games can read their memory limit (`IgniteHost.memoryLimit`). TVs can crop the picture's edges, so on Xbox the game's UI keeps inside a title-safe margin (5% by default, in Build for Xbox; `Screen.safeArea` in C#), and **Preview → Xbox** shows it in the editor. Xbox services (achievements, stats, leaderboards, Xbox sign-in) need the Microsoft GDK, so in the Windows & Xbox app they report that they're unavailable.
 
 ## How updates work
 
