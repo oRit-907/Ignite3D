@@ -60,6 +60,10 @@ To add the `ignite3d` command to your terminals, open the **Claude app** window 
 
 Every language runs wherever the game runs (web, Android, Windows, Xbox, the C++ player), errors point at the line or node, and Claude can write them all.
 
+**Controllers:** scripts read up to four controllers (`Input.getButton('A', 1)`, `Input.gamepads`, C#'s `Input.GetJoystickNames()`, GDScript's device argument) and hear when one connects or disconnects. HUD buttons work with a controller: the D-pad or left stick moves a focus ring, A presses, B goes back (`UI.focus`, `UI.onBack`; GDScript's `grab_focus()` and focus signals), and Web Game pages can opt in with `data-ig-focus`.
+
+**When the player leaves the game**, scripts hear it (`IG.App.on('suspend' | 'resume' | 'hide' | 'show')`, `onApplicationPause` in JavaScript, `OnApplicationPause` / `OnApplicationFocus` in C#, `NOTIFICATION_APPLICATION_PAUSED` in GDScript), so they can save before the system suspends the game.
+
 **Native plugins** bring C or C++ code into a game. A plugin asset holds a WebAssembly build (for the web, the Android web app and the Web player) and a native build per platform (Windows, Linux, Android, and the Xbox app's C++ player), and games call it the same way everywhere: `const p = await IgnitePlugins.load('name'); p.call('fn', [numbers], [typedArrays])`. The plugin header `ignite_plugin.h` describes the format and how to build both kinds. **Window → Audio Mixer** sets up mixer groups. Scripts play sounds with `Audio.play`, `playAt` (3D) and `playMusic` (crossfades).
 
 ## C++ player: DirectX 11, Vulkan, NVIDIA and AMD
@@ -129,7 +133,9 @@ The password stays in memory until Ignite3D closes. Ignite3D remembers the conso
 
 **App or Game.** An Xbox runs a UWP app as an *App* (about 1 GB of memory and part of the graphics chip) unless it's a *Game* (about 5 GB and the whole chip). After starting the game, Ignite3D reads which one the console used and tells you. To run games as Games, open Device Portal in a browser, go to **Settings → Preference Settings** and check **Treat UWP apps as games by default**.
 
-The app writes `LocalState\app.log` on the console (the version, memory limit, App or Game, errors and crashes), and recovers when the Web player's browser engine stops. Games can read their memory limit (`IgniteHost.memoryLimit`). TVs can crop the picture's edges, so on Xbox the game's UI keeps inside a title-safe margin (5% by default, in Build for Xbox; `Screen.safeArea` in C#), and **Preview → Xbox** shows it in the editor. Xbox services (achievements, stats, leaderboards, Xbox sign-in) need the Microsoft GDK, so in the Windows & Xbox app they report that they're unavailable.
+The app writes `LocalState\app.log` on the console (the version, memory limit, App or Game, errors and crashes), and recovers when the Web player's browser engine stops. Before the console suspends the game (Home, the Guide, another app), both players let the game's scripts save first.
+
+**Diagnostics** (Build for Xbox, once connected): **Get logs** downloads the game's logs from the console; **Profile on console** and **Benchmark** run the C++ player with the profiler or a frame-time benchmark and show the results; **Web DevTools** turns on Edge's remote DevTools for the Web player and shows how to connect. On Xbox and in Preview → Xbox, if the controller disconnects the game pauses with "Reconnect your controller" (a setting in Build for Xbox; scripts can turn it off). Games can read their memory limit (`IgniteHost.memoryLimit`). TVs can crop the picture's edges, so on Xbox the game's UI keeps inside a title-safe margin (5% by default, in Build for Xbox; `Screen.safeArea` in C#), and **Preview → Xbox** shows it in the editor. Xbox services (achievements, stats, leaderboards, Xbox sign-in) need the Microsoft GDK, so in the Windows & Xbox app they report that they're unavailable.
 
 ## How updates work
 

@@ -1,27 +1,27 @@
 {
-  "version": "2.26.1",
-  "file": "Ignite3D-Update-2.26.1.exe",
-  "size": 35970154,
-  "sha256": "52cc5d1b8dba3c4760c6886e417d615348318a8cd88350a254c21274e93b2183",
-  "notes": "## Native plugins (C and C++ in games)\n- A **plugin** asset brings C or C++ code into a game: its WebAssembly build runs in web builds, the Android web app and the Xbox Web player, and its native builds run in the C++ player on Windows, Linux, Android and the Xbox app. Games call it the same way everywhere: `const p = await IgnitePlugins.load('name'); p.call('fn', [numbers], [typedArrays])`.\n- Plugins are saved in project folders as `Name.wasm` plus a file per native build, and Build for Xbox puts them in the package.\n- A WebAssembly build missing an export the loader needs now gets an error that says which (for example, link with `--export-table`).\n\n## Xbox\n- **App or Game:** after Build and run on Xbox starts the game, Ignite3D reads from the console whether it runs as an App (about 1 GB and part of the GPU) or a Game (about 5 GB and the whole GPU), and says how to switch: Device Portal \u2192 Settings \u2192 Preference Settings \u2192 Treat UWP apps as games by default.\n- New buttons in Build for Xbox: **Check app type**, **Show app log**, **Launch** (without rebuilding), **Uninstall from console**, and a list of consoles to switch between.\n- The Xbox app writes `LocalState\\app.log` (version, memory limit, App or Game, errors and crashes) and shows an error screen instead of a blank one. The Web player recovers when its browser engine stops or crashes. Games can read `IgniteHost.memoryLimit`.\n- **Title-safe margin** (5% by default) keeps the game's UI inside the area TVs show; `Screen.safeArea` in C#, `get_display_safe_area()` in GDScript, and **Preview \u2192 Xbox** in the editor.\n- Xbox services report that they're unavailable in the Windows & Xbox app instead of pretending to sign in (they need the Microsoft GDK), and the editor warns when a game uses them there.\n- The Store guidance is corrected: the Xbox Store no longer takes new UWP games; games reach Xbox through ID@Xbox and the Microsoft GDK.\n- Web games for Edge on Xbox: the \"Press A\" screen now starts sound and full screen reliably before handing the controller to the game, and updated builds don't mix old and new cached files.\n\n## Smoother frames\n- Physics is drawn smoothly between physics steps (Rigidbody interpolation), and frame times are smoothed so short hitches don't stutter.\n- `Application.targetFrameRate` (C#) / `Time.targetFrameRate` now really limits the frame rate; the C++ player uses the display's vsync for it.\n\n## Renderer fixes\n- In the C++ players, materials' custom shader uniforms and vertex attributes now work (cartoon outlines and wind sway show up).",
+  "version": "2.26.2",
+  "file": "Ignite3D-Update-2.26.2.exe",
+  "size": 36030686,
+  "sha256": "44bb6cb70b7d832f9412dbc84510adb68a2da35bd273a6bc65fcb5ac5180651d",
+  "notes": "## Controllers\n- Scripts read up to four controllers: `Input.getButton('A', 1)`, `Input.getAxis('Horizontal', 2)`, `Input.gamepads`, `Input.padCount`, and connect / disconnect events. C# gets `Input.GetJoystickNames()` and the `JoystickNButton` keys per controller; GDScript gets `get_connected_joypads()`, the device argument and `joy_connection_changed`.\n- **HUD buttons work with a controller:** the D-pad or left stick moves a focus ring to the nearest button, A presses it, B goes back (`UI.onBack`). `UI.focus(id)` picks the button; GDScript has `grab_focus()`, `has_focus()` and the focus signals. On Xbox the ring always shows, as Microsoft's TV guidance asks.\n- Web Game pages can opt in with `data-ig-focus` to get the same navigation.\n- On Xbox and in Preview \u2192 Xbox, if the controller disconnects the game pauses with \"Reconnect your controller\" (Build for Xbox \u2192 Pause when the controller disconnects; `Input.pauseOnDisconnect = false` turns it off).\n- Preview \u2192 Xbox: arrows and Enter pick on-screen buttons, and **Keyboard pad 2** adds a second controller on the keyboard for trying co-op.\n\n## When the player leaves the game\n- New `IG.App` events: `hide`, `show`, `suspend` and `resume` (with the time away). Scripts can also use `onApplicationPause` in JavaScript, `OnApplicationPause` / `OnApplicationFocus` in C#, `NOTIFICATION_APPLICATION_PAUSED` / `RESUMED` in GDScript, and a visual-script event.\n- On Xbox, both players let the game save before the console suspends it (Home, the Guide, another app). The Web player then suspends its browser engine to free memory.\n\n## Xbox diagnostics\n- Build for Xbox \u2192 **Diagnostics**, once connected: **Get logs** downloads the game's logs; **Profile on console** and **Benchmark** run the C++ player with the profiler or a frame-time benchmark and show the results; **Web DevTools** turns on Edge's remote DevTools for the Web player and shows how to connect.",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.26.1-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.1/Ignite3D-2.26.1-linux-x64.AppImage",
-      "size": 165146922,
-      "sha256": "a4ac541a2964adc34f3d683ae3a67446241f1ff0e26dc56589d360a0ac163d8b"
+      "file": "Ignite3D-2.26.2-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.2/Ignite3D-2.26.2-linux-x64.AppImage",
+      "size": 165241191,
+      "sha256": "6bc1fa88bd15555d5882099999db41a427d2c953442c11349e452d1e51a38568"
     },
     "mac": {
-      "file": "Ignite3D-2.26.1-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.1/Ignite3D-2.26.1-mac-x64.zip",
-      "size": 387485507,
-      "sha256": "09358e4fb04c5b52c30f9c4335d1a6d7e298d9ae86cf1563d3075427fe486a92"
+      "file": "Ignite3D-2.26.2-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.2/Ignite3D-2.26.2-mac-x64.zip",
+      "size": 387561400,
+      "sha256": "d8e8f9f63630074ec2288ad1073f9884b022066dfb3d771578ae711cd2953252"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.26.1-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.1/Ignite3D-2.26.1-mac-arm64.zip",
-      "size": 376111300,
-      "sha256": "1835bae8a0e7f12e6d2a9f4a6f977593c317d187538fd38215575ea1ea3854d7"
+      "file": "Ignite3D-2.26.2-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.2/Ignite3D-2.26.2-mac-arm64.zip",
+      "size": 376187193,
+      "sha256": "fbd738ad1a0c5e129aad292274ecb768b8a1fc0de4a00572573e71af9976949f"
     }
   }
 }
