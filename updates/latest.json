@@ -1,7 +1,27 @@
 {
-  "version": "2.27.0",
-  "file": "Ignite3D-Update-2.27.0.exe",
-  "size": 41011488,
-  "sha256": "c31c6c444eb5fdf75ff40d8e1f2d0d0f9aef70848afe50f692478c39a17a3b33",
-  "notes": "## Engine UI\n- New engine-drawn UI for scene projects (Scene settings → UI: Engine). Panels, text, images, buttons, bars, sliders, toggles and scrolling lists are drawn by the engine in every player, so they look the same in the editor, the web export, the C++ players and on Xbox.\n- Row and column layout with gaps, alignment and grow. Text wraps to the width it's given, and maxLines adds an ellipsis.\n- Gradients, rounded corners, borders, shadows, ring bars, gradient-filled text, and SVG art straight from markup (`{ markup: '<svg…>' }`).\n- Controller focus works on everything, and B goes back. UI.zoom sets the interface size, and the in-game safe-area setting works on TVs.\n- Handles let a script change a label's text or a bar's value without rebuilding it, and UI.Animate moves, scales, fades and turns items.\n\n## Scene projects\n- Font assets (.ttf, .otf, .woff) in project folders work for UI text in every player.\n- Native plugins work in scene projects: WebAssembly in the editor and browsers, native code in the C++ players.\n- Engine.customRender lets a game draw its own 3D view (post-processing, split screen). The UI is still drawn on top.\n- Scenes get the three.js add-ons (sky, post-processing passes, colour grade) in the web export and the C++ player.\n\n## C#\n- Members of `dynamic` and `object` values can be set (`o.x = 1`, `o.n++`, `o.v += 2`).\n- `new` works on a class from another script.\n- A field named like an operator (for example `open`) no longer breaks the build.\n\n## Also in this release\n- Everything from 2.26.3: faster starts, compressed textures, quality presets by console."
+  "version": "2.27.1",
+  "file": "Ignite3D-Update-2.27.1.exe",
+  "size": 37608700,
+  "sha256": "56da078007feb2548247f4b987c8a8fec3207e2e3f022d11284fc704734e3369",
+  "notes": "## 2.27.1\n- A maintenance release: 2.27.0 rebuilt from the merged source, which also carries every 2.26.x change. Nothing changes for games.\n\n## Engine UI\n- New engine-drawn UI for scene projects (Scene settings \u2192 UI: Engine). Panels, text, images, buttons, bars, sliders, toggles and scrolling lists are drawn by the engine in every player, so they look the same in the editor, the web export, the C++ players and on Xbox.\n- Row and column layout with gaps, alignment and grow. Text wraps to the width it's given, and maxLines adds an ellipsis.\n- Gradients, rounded corners, borders, shadows, ring bars, gradient-filled text, and SVG art straight from markup (`{ markup: '<svg\u2026>' }`).\n- Controller focus works on everything, and B goes back. UI.zoom sets the interface size, and the in-game safe-area setting works on TVs.\n- Handles let a script change a label's text or a bar's value without rebuilding it, and UI.Animate moves, scales, fades and turns items.\n\n## Scene projects\n- Font assets (.ttf, .otf, .woff) in project folders work for UI text in every player.\n- Native plugins work in scene projects: WebAssembly in the editor and browsers, native code in the C++ players.\n- Engine.customRender lets a game draw its own 3D view (post-processing, split screen). The UI is still drawn on top.\n- Scenes get the three.js add-ons (sky, post-processing passes, colour grade) in the web export and the C++ player.\n\n## C#\n- Members of `dynamic` and `object` values can be set (`o.x = 1`, `o.n++`, `o.v += 2`).\n- `new` works on a class from another script.\n- A field named like an operator (for example `open`) no longer breaks the build.\n\n## Also in this release\n- Everything from 2.26.3: faster starts, compressed textures, quality presets by console.",
+  "platforms": {
+    "linux": {
+      "file": "Ignite3D-2.27.1-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.27.1/Ignite3D-2.27.1-linux-x64.AppImage",
+      "size": 167365100,
+      "sha256": "e23ed1b2c175e5fd2aeabf5d08ec3299cd394220f3eee9b60728d6065827eb92"
+    },
+    "mac": {
+      "file": "Ignite3D-2.27.1-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.27.1/Ignite3D-2.27.1-mac-x64.zip",
+      "size": 389608562,
+      "sha256": "0cb8551569911292a981afac044d7911fcd4ca998278b7f02c18a895408a967a"
+    },
+    "mac-arm64": {
+      "file": "Ignite3D-2.27.1-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.27.1/Ignite3D-2.27.1-mac-arm64.zip",
+      "size": 378234355,
+      "sha256": "f20cae3716277445f5dc9aba1359af9ea34f6c3a49d98eba51aa259efa45df1d"
+    }
+  }
 }
