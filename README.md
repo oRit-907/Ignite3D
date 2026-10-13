@@ -68,6 +68,12 @@ Every language runs wherever the game runs (web, Android, Windows, Xbox, the C++
 
 **Native plugins** bring C or C++ code into a game. A plugin asset holds a WebAssembly build (for the web, the Android web app and the Web player) and a native build per platform (Windows, Linux, Android, and the Xbox app's C++ player), and games call it the same way everywhere: `const p = await IgnitePlugins.load('name'); p.call('fn', [numbers], [typedArrays])`. The plugin header `ignite_plugin.h` describes the format and how to build both kinds. **Window → Audio Mixer** sets up mixer groups. Scripts play sounds with `Audio.play`, `playAt` (3D) and `playMusic` (crossfades).
 
+## Ignite Engine (beta)
+
+The **Ignite Engine** is Ignite3D's new native engine: the scene, physics, rendering, particles, HUD, input and sound run in C++, drawn with **Direct3D 12** or **Vulkan**, and scripts run on top of it. In a build's settings, **C++ engine → Ignite Engine (beta)** picks it for Windows builds and for the Windows & Xbox app (Build for Xbox → C++ player, then the same C++ engine setting; it uses `ignite_engine_uwp.dll`), and **Edit → Play in Ignite Engine** runs the open project in it on this PC.
+
+It's a beta: it plays games like the samples (Ember Run, Pixel Hop) the same as the classic C++ player, but scene changes, raycasts, the engine-drawn UI, Web Game objects, ads, Steam and Xbox services still need the classic player, and it hasn't been tested on a console yet. Android builds on it aren't in this version. The classic C++ player stays the default.
+
 ## C++ player: DirectX 11, Vulkan, NVIDIA and AMD
 
 **Build for Windows → Player: C++** makes a small `.exe` that runs the game without a browser engine. **Graphics** picks what draws it:
