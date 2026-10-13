@@ -1,27 +1,7 @@
 {
-  "version": "2.26.3",
-  "file": "Ignite3D-Update-2.26.3.exe",
-  "size": 37497070,
-  "sha256": "f80ce11f5b7ae860761955d9346d8d0aba3e0977a24267684ceed8b9c7675229",
-  "notes": "## Faster starts\n- The C++ players load their engine scripts as precompiled bytecode (about 200 ms less before the first frame here), keep compiled shaders between runs, and build a scene's shaders before its first frame, so effects don't stutter the first time they appear.\n- Images decode off the game thread, and their pixel copies are freed once the GPU has them.\n- Assets load in parallel. The Xbox app shows a loading screen with a progress bar until the game's first frame, instead of a black screen.\n\n## Compressed textures\n- New **Texture compression** build setting. It's on by default for the Windows & Xbox app and Windows C++ player builds: material textures are stored as BC1/BC3 GPU textures with mipmaps, using about a quarter to an eighth of the memory. In a test with 16 textures of 1024x1024, memory went from about 324 MB to 194 MB, and the frame that uploads them was much shorter.\n- Sprites, pixel art, HUD images and normal maps stay as they are, and each texture can be set to Auto, Always or Never. Where a GPU can't use compressed textures, the game decodes them itself, so nothing breaks.\n\n## Quality settings and the console model\n- **Scene settings \u2192 Quality:** Low, Medium, High and Ultra presets, plus *Auto*, which picks one by console. Settings cover render scale, dynamic resolution (lowers the 3D resolution to hold the frame rate), MSAA, shadows and anisotropic filtering. 2D games keep full resolution.\n- Games can read the console model and tier (`IgniteHost.device`, `IG.Platform`). C# gets `SystemInfo.deviceModel`, `Application.platform` and `QualitySettings`.\n- **Preview \u2192 Xbox** can simulate Xbox One, One X, Series S and Series X.",
-  "platforms": {
-    "linux": {
-      "file": "Ignite3D-2.26.3-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.3/Ignite3D-2.26.3-linux-x64.AppImage",
-      "size": 167230355,
-      "sha256": "a2925fe3b5c05894f459833ed2604cd6d5ff86f12b6793a49b1d32e5e92250ee"
-    },
-    "mac": {
-      "file": "Ignite3D-2.26.3-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.3/Ignite3D-2.26.3-mac-x64.zip",
-      "size": 389470854,
-      "sha256": "a2e2f0f0dabe6818b7748c6567b80785cf12eb7706854c045faed63d35402207"
-    },
-    "mac-arm64": {
-      "file": "Ignite3D-2.26.3-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.3/Ignite3D-2.26.3-mac-arm64.zip",
-      "size": 378096647,
-      "sha256": "69b6e187f89016615f40ef14f5f60ac8d45e7bb5c0db505c93acd68c0a5f28a8"
-    }
-  }
+  "version": "2.27.0",
+  "file": "Ignite3D-Update-2.27.0.exe",
+  "size": 41011488,
+  "sha256": "c31c6c444eb5fdf75ff40d8e1f2d0d0f9aef70848afe50f692478c39a17a3b33",
+  "notes": "## Engine UI\n- New engine-drawn UI for scene projects (Scene settings → UI: Engine). Panels, text, images, buttons, bars, sliders, toggles and scrolling lists are drawn by the engine in every player, so they look the same in the editor, the web export, the C++ players and on Xbox.\n- Row and column layout with gaps, alignment and grow. Text wraps to the width it's given, and maxLines adds an ellipsis.\n- Gradients, rounded corners, borders, shadows, ring bars, gradient-filled text, and SVG art straight from markup (`{ markup: '<svg…>' }`).\n- Controller focus works on everything, and B goes back. UI.zoom sets the interface size, and the in-game safe-area setting works on TVs.\n- Handles let a script change a label's text or a bar's value without rebuilding it, and UI.Animate moves, scales, fades and turns items.\n\n## Scene projects\n- Font assets (.ttf, .otf, .woff) in project folders work for UI text in every player.\n- Native plugins work in scene projects: WebAssembly in the editor and browsers, native code in the C++ players.\n- Engine.customRender lets a game draw its own 3D view (post-processing, split screen). The UI is still drawn on top.\n- Scenes get the three.js add-ons (sky, post-processing passes, colour grade) in the web export and the C++ player.\n\n## C#\n- Members of `dynamic` and `object` values can be set (`o.x = 1`, `o.n++`, `o.v += 2`).\n- `new` works on a class from another script.\n- A field named like an operator (for example `open`) no longer breaks the build.\n\n## Also in this release\n- Everything from 2.26.3: faster starts, compressed textures, quality presets by console."
 }
