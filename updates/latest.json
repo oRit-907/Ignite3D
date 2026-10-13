@@ -1,27 +1,27 @@
 {
-  "version": "2.26.2",
-  "file": "Ignite3D-Update-2.26.2.exe",
-  "size": 36030686,
-  "sha256": "44bb6cb70b7d832f9412dbc84510adb68a2da35bd273a6bc65fcb5ac5180651d",
-  "notes": "## Controllers\n- Scripts read up to four controllers: `Input.getButton('A', 1)`, `Input.getAxis('Horizontal', 2)`, `Input.gamepads`, `Input.padCount`, and connect / disconnect events. C# gets `Input.GetJoystickNames()` and the `JoystickNButton` keys per controller; GDScript gets `get_connected_joypads()`, the device argument and `joy_connection_changed`.\n- **HUD buttons work with a controller:** the D-pad or left stick moves a focus ring to the nearest button, A presses it, B goes back (`UI.onBack`). `UI.focus(id)` picks the button; GDScript has `grab_focus()`, `has_focus()` and the focus signals. On Xbox the ring always shows, as Microsoft's TV guidance asks.\n- Web Game pages can opt in with `data-ig-focus` to get the same navigation.\n- On Xbox and in Preview \u2192 Xbox, if the controller disconnects the game pauses with \"Reconnect your controller\" (Build for Xbox \u2192 Pause when the controller disconnects; `Input.pauseOnDisconnect = false` turns it off).\n- Preview \u2192 Xbox: arrows and Enter pick on-screen buttons, and **Keyboard pad 2** adds a second controller on the keyboard for trying co-op.\n\n## When the player leaves the game\n- New `IG.App` events: `hide`, `show`, `suspend` and `resume` (with the time away). Scripts can also use `onApplicationPause` in JavaScript, `OnApplicationPause` / `OnApplicationFocus` in C#, `NOTIFICATION_APPLICATION_PAUSED` / `RESUMED` in GDScript, and a visual-script event.\n- On Xbox, both players let the game save before the console suspends it (Home, the Guide, another app). The Web player then suspends its browser engine to free memory.\n\n## Xbox diagnostics\n- Build for Xbox \u2192 **Diagnostics**, once connected: **Get logs** downloads the game's logs; **Profile on console** and **Benchmark** run the C++ player with the profiler or a frame-time benchmark and show the results; **Web DevTools** turns on Edge's remote DevTools for the Web player and shows how to connect.",
+  "version": "2.26.3",
+  "file": "Ignite3D-Update-2.26.3.exe",
+  "size": 37497070,
+  "sha256": "f80ce11f5b7ae860761955d9346d8d0aba3e0977a24267684ceed8b9c7675229",
+  "notes": "## Faster starts\n- The C++ players load their engine scripts as precompiled bytecode (about 200 ms less before the first frame here), keep compiled shaders between runs, and build a scene's shaders before its first frame, so effects don't stutter the first time they appear.\n- Images decode off the game thread, and their pixel copies are freed once the GPU has them.\n- Assets load in parallel. The Xbox app shows a loading screen with a progress bar until the game's first frame, instead of a black screen.\n\n## Compressed textures\n- New **Texture compression** build setting. It's on by default for the Windows & Xbox app and Windows C++ player builds: material textures are stored as BC1/BC3 GPU textures with mipmaps, using about a quarter to an eighth of the memory. In a test with 16 textures of 1024x1024, memory went from about 324 MB to 194 MB, and the frame that uploads them was much shorter.\n- Sprites, pixel art, HUD images and normal maps stay as they are, and each texture can be set to Auto, Always or Never. Where a GPU can't use compressed textures, the game decodes them itself, so nothing breaks.\n\n## Quality settings and the console model\n- **Scene settings \u2192 Quality:** Low, Medium, High and Ultra presets, plus *Auto*, which picks one by console. Settings cover render scale, dynamic resolution (lowers the 3D resolution to hold the frame rate), MSAA, shadows and anisotropic filtering. 2D games keep full resolution.\n- Games can read the console model and tier (`IgniteHost.device`, `IG.Platform`). C# gets `SystemInfo.deviceModel`, `Application.platform` and `QualitySettings`.\n- **Preview \u2192 Xbox** can simulate Xbox One, One X, Series S and Series X.",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.26.2-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.2/Ignite3D-2.26.2-linux-x64.AppImage",
-      "size": 165241191,
-      "sha256": "6bc1fa88bd15555d5882099999db41a427d2c953442c11349e452d1e51a38568"
+      "file": "Ignite3D-2.26.3-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.3/Ignite3D-2.26.3-linux-x64.AppImage",
+      "size": 167230355,
+      "sha256": "a2925fe3b5c05894f459833ed2604cd6d5ff86f12b6793a49b1d32e5e92250ee"
     },
     "mac": {
-      "file": "Ignite3D-2.26.2-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.2/Ignite3D-2.26.2-mac-x64.zip",
-      "size": 387561400,
-      "sha256": "d8e8f9f63630074ec2288ad1073f9884b022066dfb3d771578ae711cd2953252"
+      "file": "Ignite3D-2.26.3-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.3/Ignite3D-2.26.3-mac-x64.zip",
+      "size": 389470854,
+      "sha256": "a2e2f0f0dabe6818b7748c6567b80785cf12eb7706854c045faed63d35402207"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.26.2-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.2/Ignite3D-2.26.2-mac-arm64.zip",
-      "size": 376187193,
-      "sha256": "fbd738ad1a0c5e129aad292274ecb768b8a1fc0de4a00572573e71af9976949f"
+      "file": "Ignite3D-2.26.3-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.26.3/Ignite3D-2.26.3-mac-arm64.zip",
+      "size": 378096647,
+      "sha256": "69b6e187f89016615f40ef14f5f60ac8d45e7bb5c0db505c93acd68c0a5f28a8"
     }
   }
 }
