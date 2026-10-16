@@ -74,6 +74,17 @@ The **Ignite Engine** is Ignite3D's new native engine: the scene, physics, rende
 
 It's a beta: it plays games like the samples (Ember Run, Pixel Hop) the same as the classic C++ player, but scene changes, raycasts, the engine-drawn UI, Web Game objects, ads, Steam and Xbox services still need the classic player, and it hasn't been tested on a console yet. Android builds on it aren't in this version. The classic C++ player stays the default.
 
+## Native Player (beta)
+
+The **Native Player** is Ignite3D's new C++ core: one player for Windows, the Microsoft Store (GDK) and Android that runs the game from one package, `game.igpk`, drawn with OpenGL ES through ANGLE on Windows and OpenGL ES 3 on Android, with no browser engine. It plays games like the samples (Ember Run, Pixel Hop) frame for frame the same as the classic players. Pick it with **Player: Native Player (beta)**:
+
+- **Build for Windows → Game folder:** `<Game>.exe`, `game.igpk` and the ANGLE DLLs. **Graphics** picks DirectX 11, Vulkan or WARP (DirectX 11's software renderer).
+- **Build for Windows → Package: Microsoft Store (GDK):** the same folder on the GDK build of the player, with `MicrosoftGame.config` and the GDK runtime from your install, then the `.msixvc` from the GDK's `makepkg`. With **Xbox services** on it also has the player's Xbox sign-in, stats and leaderboards, presence and Xbox cloud saves, with the same `Xbox.*` script calls as the C++ player.
+- **Build for Android:** an APK (Android 10 and newer, 64-bit).
+- **Build → Export Native Player Package (.igpk):** the game package on its own, also from the browser editor.
+
+It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Play and no Steam build yet, and Web Game objects need the classic players. Saves live in `%LOCALAPPDATA%\Ignite3D\<exe name>` on Windows (an installed Store package uses its package name instead), so switching a game from the classic player starts with no saves. The classic players stay the default.
+
 ## C++ player: DirectX 11, Vulkan, NVIDIA and AMD
 
 **Build for Windows → Player: C++** makes a small `.exe` that runs the game without a browser engine. **Graphics** picks what draws it:
@@ -94,6 +105,8 @@ You need the free [Microsoft GDK](https://github.com/microsoft/GDK/releases) on 
 
 **Package: Microsoft Store (GDK)** makes the `.msixvc` with the GDK's `makepkg`: a test package that installs on your PC with one button, or a package encrypted for upload in Partner Center.
 
+The same package works with **Player: Native Player (beta)** (see Native Player above), with or without Xbox services. It needs the GDK from October 2025 (2510) or newer.
+
 The C++ player reads controllers through **Microsoft GameInput** on Windows (Xbox, PlayStation and more), with rumble and the Xbox controller's trigger rumble: `Input.vibrate(strong, weak, ms, leftTrigger, rightTrigger)`. PCs without GameInput use the standard controller driver.
 
 ## Online games
@@ -105,7 +118,7 @@ The C++ player reads controllers through **Microsoft GameInput** on Windows (Xbo
 
 ## Ads
 
-**Build → Ads** sets up AdMob banner, interstitial and rewarded ads for Android builds. Google's test ads are on until you turn them off. In Play Console, declare that the app contains ads and fill in Data safety as Google's AdMob guide describes.
+Ignite3D doesn't ship an ad network. Scripts keep the same ad calls (`Ads.showRewarded`, `Ads.showInterstitial`, `Ads.showBanner` and the rest, in every language), and a game connects its own ad network with `Ads.setProvider({ name, show(format, ad), load, isReady, showBanner, hideBanner, ... })`. Without a provider every ad call answers "no ad": rewarded and interstitial ads resolve `false`, banners don't show, and the first call of a run logs one warning. Builds contain no ad SDK and no advertising ID.
 
 ## Steam
 
