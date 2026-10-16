@@ -1,27 +1,27 @@
 {
-  "version": "2.27.2",
-  "file": "Ignite3D-Update-2.27.2.exe",
-  "size": 42100080,
-  "sha256": "428e60c5f5371625ae6158621e395308bd0cf9ba3bfd3462867ee7f8baee6a08",
-  "notes": "## Ignite Engine (beta)\n- A new native engine. The scene, physics, rendering, particles, HUD, input and sound run in C++, drawn with Direct3D 12 or Vulkan, and scripts run on top of it.\n- Pick it with **C++ engine \u2192 Ignite Engine (beta)** in a build's settings:\n  - **Windows builds:** Direct3D 12, or Vulkan.\n  - **The Windows & Xbox app:** Build for Xbox \u2192 C++ player, then the same C++ engine setting.\n- **Edit \u2192 Play in Ignite Engine** runs the open project in it on this PC.\n- It plays games like Ember Run and Pixel Hop the same as the classic C++ player: in tests, every object's movement matched frame for frame.\n- **Not yet:** scene changes, raycasts, the engine-drawn UI, Web Game objects, ads, Steam and Xbox services still need the classic player. Android builds on it aren't in this version, and it hasn't been tested on a console.\n- The classic C++ player stays the default.\n\n## Also\n- Everything from 2.27.0 and 2.27.1 (the engine-drawn UI for scene projects, font assets, native plugins in scenes, and more).",
+  "version": "2.28.1",
+  "file": "Ignite3D-Update-2.28.1.exe",
+  "size": 43438784,
+  "sha256": "6b9e52fbb26c4c6404055fead1aa2c2b4bb87e6df90c3b50b81a72f73c920ca9",
+  "notes": "## Native Player (beta)\n- Ignite3D's new C++ core runs a game from one package, `game.igpk`, with no browser engine. It plays the samples (Ember Run, Pixel Hop) frame for frame the same as the classic players.\n- Pick it with **Player: Native Player (beta)**:\n  - **Build for Windows \u2192 Game folder:** `<Game>.exe`, `game.igpk` and ANGLE. **Graphics** picks DirectX 11, Vulkan or WARP.\n  - **Build for Windows \u2192 Package: Microsoft Store (GDK):** the `.msixvc` made with your GDK's makepkg, with or without **Xbox services** (sign-in, stats and leaderboards, presence, Xbox cloud saves, the same `Xbox.*` script calls as the C++ player).\n  - **Build \u2192 Export Native Player Package (.igpk):** the game package on its own.\n- Not yet: Android builds on the Native Player, Linux, Steam, the Android App Bundle and Web Game objects. The classic players stay the default.\n\n## Ads\n- Ignite3D no longer ships an ad network. Scripts keep the same ad calls, and a game connects its own network with `Ads.setProvider(...)`. Without one, ad calls answer \"no ad\". Builds contain no ad SDK and no advertising ID.\n\n## Android\n- Android builds on the C++ player aren't in this version (its template is being rebuilt without the old built-in ads): Android builds use the WebView player.",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.27.2-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.27.2/Ignite3D-2.27.2-linux-x64.AppImage",
-      "size": 175184000,
-      "sha256": "0868ca74af7b4246ae233acf3967a33501df0268defd0bda7ec730cc4c3933db"
+      "file": "Ignite3D-2.28.1-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.1/Ignite3D-2.28.1-linux-x64.AppImage",
+      "size": 183874173,
+      "sha256": "cb5c02496b8070843ce6675aa8c2a7ec352ccea4cdb7477cc74622431e149ca1"
     },
     "mac": {
-      "file": "Ignite3D-2.27.2-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.27.2/Ignite3D-2.27.2-mac-x64.zip",
-      "size": 397030345,
-      "sha256": "099e5e8752f49150e10105c533b5668347c3de3608bb7eabc719f2f4a1cf0bca"
+      "file": "Ignite3D-2.28.1-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.1/Ignite3D-2.28.1-mac-x64.zip",
+      "size": 404414046,
+      "sha256": "ca2d86b2dfc40020ab038e91981a3bd747b26b2c8b9da9a6933704093ff33bbb"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.27.2-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.27.2/Ignite3D-2.27.2-mac-arm64.zip",
-      "size": 385656138,
-      "sha256": "412ff095c871a6abe2dc39f36aac8e2d15126a48436a17332bdb3737f2d1f6d9"
+      "file": "Ignite3D-2.28.1-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.1/Ignite3D-2.28.1-mac-arm64.zip",
+      "size": 393039839,
+      "sha256": "9476cb161727e526ecf4999a86671b9ff5041db34759eb8dea9458507c084f0d"
     }
   }
 }
