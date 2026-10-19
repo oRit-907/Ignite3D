@@ -80,7 +80,7 @@ The **Native Player** is Ignite3D's new C++ core: one player for Windows, the Mi
 
 - **Build for Windows → Game folder:** `<Game>.exe`, `game.igpk` and the ANGLE DLLs. **Graphics** picks DirectX 11, Vulkan or WARP (DirectX 11's software renderer).
 - **Build for Windows → Package: Microsoft Store (GDK):** the same folder on the GDK build of the player, with `MicrosoftGame.config` and the GDK runtime from your install, then the `.msixvc` from the GDK's `makepkg`. With **Xbox services** on it also has the player's Xbox sign-in, stats and leaderboards, presence and Xbox cloud saves, with the same `Xbox.*` script calls as the C++ player.
-- **Build for Android:** an APK (Android 10 and newer, 64-bit). Not in 2.28.1 yet: its Android template comes in a later update, and until then Android builds use the WebView or C++ player.
+- **Build for Android:** an APK (Android 10 and newer, 64-bit). Not in 2.28.2 yet: its Android template comes in a later update, and until then Android builds use the WebView or C++ player.
 - **Build → Export Native Player Package (.igpk):** the game package on its own, also from the browser editor.
 
 It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Play and no Steam build yet, and Web Game objects need the classic players. Saves live in `%LOCALAPPDATA%\Ignite3D\<exe name>` on Windows (an installed Store package uses its package name instead), so switching a game from the classic player starts with no saves. The classic players stay the default.
@@ -95,11 +95,13 @@ It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Pl
 
 If the chosen renderer can't start on a PC, the game falls back (Vulkan → DirectX 11 → OpenGL) and `player.log` says why. **GPU** picks the fast GPU (default) or the power-saving one on laptops with NVIDIA Optimus or AMD switchable graphics. `player.log` lists every GPU and the one in use. Players can override both: `Game.exe --renderer vulkan --gpu power-saving`. Games read the GPU with `Engine.graphics`, `SystemInfo` (C#) or `RenderingServer` (GDScript).
 
-**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now. It isn't in 2.28.1: its Android template is being rebuilt without the old built-in ads, so Android builds use the WebView player in this version.
+**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now. It isn't in 2.28.2: its Android template is being rebuilt without the old built-in ads, so Android builds use the WebView player in this version.
 
 ## Xbox services and the Microsoft Store (Microsoft GDK)
 
 **Build for Windows → Player: C++ → Xbox services** gives Windows games the player's Xbox sign-in and gamertag, title-managed stats and leaderboards, rich presence, achievements (ID@Xbox titles) and Xbox cloud saves. Scripts use `Xbox.signIn()`, `Xbox.setStat`, `Xbox.leaderboard`, `Xbox.setPresence`, `Xbox.unlock` and `Xbox.cloudSave` / `Xbox.cloudLoad` in any language. In the editor they run in a test mode, so you can try them before the game is set up. **Xbox cloud saves** also keeps the game's `localStorage` in the player's Xbox cloud.
+
+**Account changes (beta).** Games hear the player signing out, signing back in, getting a new gamertag or switching account while they run: `Xbox.on('userchange' | 'signedout' | 'signingout' | 'cloudupdate', fn)`, `Xbox.user`, `Xbox.switchUser()`, and `Xbox.simulateUserChange()` in the editor's test mode. With Xbox cloud saves each account keeps its own data: one player's `localStorage` never goes to another player's cloud (it waits on the PC until its owner signs in again). The Native Player's Microsoft Store (GDK) package restarts the game on the new player's data; the C++ player asks for a restart instead. After the PC wakes from sleep, a newer cloud copy saved on another device wins on the Native Player. This is beta: it hasn't yet run on Windows with Gaming Services, only in Ignite3D's own tests.
 
 You need the free [Microsoft GDK](https://github.com/microsoft/GDK/releases) on your PC (`winget install Microsoft.Gaming.GDK`) and your game set up in Partner Center (the Xbox Creators Program is open to everyone; achievements need ID@Xbox). Enter the Title ID, SCID and MSA App ID; the build copies the GDK's runtime from your install and writes `MicrosoftGame.config`. Ignite3D doesn't include any part of the GDK. Under the GDK's license, games that use it are published through the Microsoft Store.
 
