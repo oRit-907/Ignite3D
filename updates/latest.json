@@ -1,27 +1,27 @@
 {
-  "version": "2.28.2",
-  "file": "Ignite3D-Update-2.28.2.exe",
-  "size": 43535132,
-  "sha256": "295d1dfafd861e20288950b50c2b19fc9c6b0bbe81addaef268d2642232300cd",
-  "notes": "## Xbox account changes (beta)\n- Games now hear the player signing out, signing back in, getting a new gamertag or switching account while they run: `Xbox.on('userchange' | 'signedout' | 'signingout' | 'cloudupdate', fn)`, `Xbox.user`, `Xbox.storageSynced` and `Xbox.switchUser()` (the account picker). In the editor's test mode, `Xbox.simulateUserChange()` tries them out.\n- With **Xbox cloud saves** each account keeps its own data. One player's `localStorage` never goes to another player's cloud: it is kept on the PC until its owner signs in again.\n- On the Native Player's **Microsoft Store (GDK)** package the game restarts on the new player's data, and after the PC wakes from sleep a newer cloud copy saved on another device wins. The C++ player asks for a restart before a different player can take over.\n- Beta: tested in Ignite3D's own test suites, not yet on Windows with Gaming Services.\n\n## Still not in this version\n- Android builds on the Native Player and on the C++ player (their Android templates are being rebuilt). Android builds use the WebView player.\n",
+  "version": "2.28.3",
+  "file": "Ignite3D-Update-2.28.3.exe",
+  "size": 43441523,
+  "sha256": "59a3cc15fed64158d99e3e85b26a32a27e81e11087cc92e3d2dc8643651c8b42",
+  "notes": "## Windows players\n- The Chromium (CEF) player is removed. **Build for Windows → Player** now offers **Web**, **C++** and **Native Player (beta)**.\n- A project saved with the old **Native** (CEF) player builds on the **Web** player: the same game page, on Electron. The build says so once.\n\n## Still not in this version\n- Android builds on the Native Player and on the C++ player (their Android templates are being rebuilt). Android builds use the WebView player.\n",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.28.2-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.2/Ignite3D-2.28.2-linux-x64.AppImage",
-      "size": 184003952,
-      "sha256": "786f4dbff4f20fb964a413fabe7e68ec06d896ad711d31aba807df576c060e6b"
+      "file": "Ignite3D-2.28.3-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.3/Ignite3D-2.28.3-linux-x64.AppImage",
+      "size": 183905954,
+      "sha256": "c564f4fe070b91a8a3a2b9844f7ab308cc70004da338dbf2c49388b95c1a6972"
     },
     "mac": {
-      "file": "Ignite3D-2.28.2-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.2/Ignite3D-2.28.2-mac-x64.zip",
-      "size": 404527349,
-      "sha256": "6ceec553b6455bf388b1ad61ab9595bbb643c3278a8df9052776345225c1525b"
+      "file": "Ignite3D-2.28.3-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.3/Ignite3D-2.28.3-mac-x64.zip",
+      "size": 404424749,
+      "sha256": "170934298880a627c73138fde01c3d01e851eee8df60e47f7fdbe31f42faa248"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.28.2-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.2/Ignite3D-2.28.2-mac-arm64.zip",
-      "size": 393153142,
-      "sha256": "9f9d0caecf4a6347c80bf4fbded78c7e1d58497346f0bb65f652d4bcc485c97c"
+      "file": "Ignite3D-2.28.3-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.3/Ignite3D-2.28.3-mac-arm64.zip",
+      "size": 393050542,
+      "sha256": "a277d2053a0e7c3000d2bfc0f4e374fa85329191041e806f7c2f123a7702c199"
     }
   }
 }
