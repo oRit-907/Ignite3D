@@ -1,27 +1,27 @@
 {
-  "version": "2.28.3",
-  "file": "Ignite3D-Update-2.28.3.exe",
-  "size": 43441523,
-  "sha256": "59a3cc15fed64158d99e3e85b26a32a27e81e11087cc92e3d2dc8643651c8b42",
-  "notes": "## Windows players\n- The Chromium (CEF) player is removed. **Build for Windows → Player** now offers **Web**, **C++** and **Native Player (beta)**.\n- A project saved with the old **Native** (CEF) player builds on the **Web** player: the same game page, on Electron. The build says so once.\n\n## Still not in this version\n- Android builds on the Native Player and on the C++ player (their Android templates are being rebuilt). Android builds use the WebView player.\n",
+  "version": "2.28.4",
+  "file": "Ignite3D-Update-2.28.4.exe",
+  "size": 44118859,
+  "sha256": "c4cac807e7b7918bc008c0a79b8bb658b297173d8a4a8c096f968591a334f396",
+  "notes": "## Google Play Billing on Android\n- Android apps (WebView player) can sell one-time products made in Play Console. Games call `IgniteAndroid.billingCall` with `products`, `buy`, `purchases` and `consume`, and every answer comes back to `window.__igBilling`.\n- Purchases that finish outside a call (Google Play's purchase screen, or a pending payment that goes through later) arrive as an event. A purchase the game never got to is still there on the next start.\n- It uses Google Play Billing Library 9.1, so Android builds now ask for the `BILLING` permission. The script editor's **API** panel describes the calls.\n\n## Still not in this version\n- Android builds on the Native Player and on the C++ player (their Android templates are being rebuilt). Android builds use the WebView player.\n",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.28.3-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.3/Ignite3D-2.28.3-linux-x64.AppImage",
-      "size": 183905954,
-      "sha256": "c564f4fe070b91a8a3a2b9844f7ab308cc70004da338dbf2c49388b95c1a6972"
+      "file": "Ignite3D-2.28.4-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.4/Ignite3D-2.28.4-linux-x64.AppImage",
+      "size": 184573244,
+      "sha256": "3233d1a1c5dba67d80eaf907b75fffd24d6f29513bf3b1c1089a49fe8eb303c6"
     },
     "mac": {
-      "file": "Ignite3D-2.28.3-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.3/Ignite3D-2.28.3-mac-x64.zip",
-      "size": 404424749,
-      "sha256": "170934298880a627c73138fde01c3d01e851eee8df60e47f7fdbe31f42faa248"
+      "file": "Ignite3D-2.28.4-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.4/Ignite3D-2.28.4-mac-x64.zip",
+      "size": 405098850,
+      "sha256": "e9cc48f3dd26cbb6a4d7601d006905f227f729d54a77b7a16cde87ece8ea4587"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.28.3-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.3/Ignite3D-2.28.3-mac-arm64.zip",
-      "size": 393050542,
-      "sha256": "a277d2053a0e7c3000d2bfc0f4e374fa85329191041e806f7c2f123a7702c199"
+      "file": "Ignite3D-2.28.4-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.4/Ignite3D-2.28.4-mac-arm64.zip",
+      "size": 393724643,
+      "sha256": "c0bf94b5319c66bb087f80ec53b9ab25fe4c9270896a566dff5d67cc79c139cf"
     }
   }
 }
