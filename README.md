@@ -80,7 +80,7 @@ The **Native Player** is Ignite3D's new C++ core: one player for Windows, the Mi
 
 - **Build for Windows → Game folder:** `<Game>.exe`, `game.igpk` and the ANGLE DLLs. **Graphics** picks DirectX 11, Vulkan or WARP (DirectX 11's software renderer).
 - **Build for Windows → Package: Microsoft Store (GDK):** the same folder on the GDK build of the player, with `MicrosoftGame.config` and the GDK runtime from your install, then the `.msixvc` from the GDK's `makepkg`. With **Xbox services** on it also has the player's Xbox sign-in, stats and leaderboards, presence and Xbox cloud saves, with the same `Xbox.*` script calls as the C++ player.
-- **Build for Android:** an APK (Android 10 and newer, 64-bit). Not in 2.28.3 yet: its Android template comes in a later update, and until then Android builds use the WebView or C++ player.
+- **Build for Android:** an APK (Android 10 and newer, 64-bit). Not in 2.28.4 yet: its Android template comes in a later update, and until then Android builds use the WebView or C++ player.
 - **Build → Export Native Player Package (.igpk):** the game package on its own, also from the browser editor.
 
 It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Play and no Steam build yet, and Web Game objects need the classic players. Saves live in `%LOCALAPPDATA%\Ignite3D\<exe name>` on Windows (an installed Store package uses its package name instead), so switching a game from the classic player starts with no saves. The classic players stay the default.
@@ -95,7 +95,7 @@ It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Pl
 
 If the chosen renderer can't start on a PC, the game falls back (Vulkan → DirectX 11 → OpenGL) and `player.log` says why. **GPU** picks the fast GPU (default) or the power-saving one on laptops with NVIDIA Optimus or AMD switchable graphics. `player.log` lists every GPU and the one in use. Players can override both: `Game.exe --renderer vulkan --gpu power-saving`. Games read the GPU with `Engine.graphics`, `SystemInfo` (C#) or `RenderingServer` (GDScript).
 
-**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now. It isn't in 2.28.3: its Android template is being rebuilt without the old built-in ads, so Android builds use the WebView player in this version.
+**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now. It isn't in 2.28.4: its Android template is being rebuilt without the old built-in ads, so Android builds use the WebView player in this version.
 
 ## Xbox services and the Microsoft Store (Microsoft GDK)
 
@@ -117,6 +117,13 @@ The C++ player reads controllers through **Microsoft GameInput** on Windows (Xbo
 
 - **Multiplayer** (`Net`): rooms with codes, quick match, peer-to-peer connections with TURN relays, a new host when the host leaves, and the Network Sync component.
 - **Cloud saves** (`Cloud`): saves that follow the player between devices and work offline.
+
+## In-app purchases
+
+Games sell items through the platform's own store:
+
+- **Microsoft Store** (the Windows & Xbox app): add-ons made in Partner Center, with `IgniteHost.store`: `products()`, `purchase(storeId)`, and for Store-managed consumables `balance(storeId)` and `fulfill(storeId, quantity, trackingId)`. **Preview → Xbox** has a pretend store to try it with.
+- **Google Play** (Android apps on the WebView player): one-time products made in Play Console. Check `IgniteAndroid.billing && IgniteAndroid.billing()`, then call `IgniteAndroid.billingCall(JSON.stringify({ id, op, ... }))` with `op` `products` (`ids`), `buy` (`productId`), `purchases` or `consume` (`token`). Every answer, and every purchase that finishes outside a call (the purchase screen, a pending payment that goes through), comes back to `window.__igBilling(reply)`. Give the item, then consume the purchase: one the game never got to is still there on the next start (`purchases`). It uses Google Play Billing Library 9.1, so Android builds ask for the `BILLING` permission.
 
 ## Ads
 
