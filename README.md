@@ -29,6 +29,8 @@ Every asset has a `.meta` file that keeps its id, so objects keep their referenc
 
 A project can have many **scenes** (levels, menus): switch them in the Hierarchy, make one with **File → New Scene**, and set the game's scenes and their order in **Build → Scenes in Build**. Scripts load scenes while playing (`SceneManager.LoadScene("Level2")` and `DontDestroyOnLoad` in C#, `this.loadScene('Level2')` in JavaScript, `change_scene_to_file()` in GDScript, or the **Load Scene** node).
 
+A Web Game object (a game made as a web page) can read the project's scenes too: with `/* @ignite-scenes: Level- */` at the top of its code, every scene whose name starts with `Level-` comes to the game as data (`IgniteScenes.names()`, and `IgniteScenes.get(name)` for a scene's settings and its objects with their components and script properties), and `IgniteScenes.start` names the scene it started from (in the editor, the one open when you pressed Play). So its levels, tracks or other content can be made in the Scene view and the Inspector. It works in Play, the web exports and the C++ players.
+
 **File → New 2D Project** makes a 2D game: an orthographic camera, Sprite Renderers (sprite sheets, tiling, pixel-art filtering), 2D physics and the 2D Scene view. **Pixel Hop** (File → Load Sample) is a 2D platformer to start from.
 
 ## Claude and other AI apps
@@ -80,7 +82,7 @@ The **Native Player** is Ignite3D's new C++ core: one player for Windows, the Mi
 
 - **Build for Windows → Game folder:** `<Game>.exe`, `game.igpk` and the ANGLE DLLs. **Graphics** picks DirectX 11, Vulkan or WARP (DirectX 11's software renderer).
 - **Build for Windows → Package: Microsoft Store (GDK):** the same folder on the GDK build of the player, with `MicrosoftGame.config` and the GDK runtime from your install, then the `.msixvc` from the GDK's `makepkg`. With **Xbox services** on it also has the player's Xbox sign-in, stats and leaderboards, presence and Xbox cloud saves, with the same `Xbox.*` script calls as the C++ player.
-- **Build for Android:** an APK (Android 10 and newer, 64-bit). Not in 2.28.5 yet: its Android template comes in a later update, and until then Android builds use the WebView or C++ player.
+- **Build for Android:** an APK (Android 10 and newer, 64-bit). Not in 2.28.6 yet: its Android template comes in a later update, and until then Android builds use the WebView or C++ player.
 - **Build → Export Native Player Package (.igpk):** the game package on its own, also from the browser editor.
 
 It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Play and no Steam build yet, and Web Game objects need the classic players. Saves live in `%LOCALAPPDATA%\Ignite3D\<exe name>` on Windows (an installed Store package uses its package name instead), so switching a game from the classic player starts with no saves. The classic players stay the default.
@@ -95,7 +97,7 @@ It's a beta: there's no Linux version, no Android App Bundle (AAB) for Google Pl
 
 If the chosen renderer can't start on a PC, the game falls back (Vulkan → DirectX 11 → OpenGL) and `player.log` says why. **GPU** picks the fast GPU (default) or the power-saving one on laptops with NVIDIA Optimus or AMD switchable graphics. `player.log` lists every GPU and the one in use. Players can override both: `Game.exe --renderer vulkan --gpu power-saving`. Games read the GPU with `Engine.graphics`, `SystemInfo` (C#) or `RenderingServer` (GDScript).
 
-**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now. It isn't in 2.28.5: its Android template is being rebuilt without the old built-in ads, so Android builds use the WebView player in this version.
+**Build for Android → Player: C++ (experimental)** makes a small native Android app on OpenGL ES 3 with the same engine. Its JavaScript engine has no JIT, so keep the WebView player for store releases for now. It isn't in 2.28.6: its Android template is being rebuilt without the old built-in ads, so Android builds use the WebView player in this version.
 
 ## Xbox services and the Microsoft Store (Microsoft GDK)
 
