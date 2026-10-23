@@ -1,27 +1,27 @@
 {
-  "version": "2.28.5",
-  "file": "Ignite3D-Update-2.28.5.exe",
-  "size": 44467240,
-  "sha256": "6c3457685acf5c139be768331b8038ee8514623f3c972fd06ad36a7434e5217f",
-  "notes": "## Xbox app Web player: faster on Xbox One\n- **Auto quality now knows the console and the app type.** It picks a profile for the Xbox One, One S, One X, Series S or Series X, and lowers it when the app runs as an Xbox \"App\" rather than a \"Game\" (the Store case, with about 1 GB of memory and under half the GPU). Presets you set by hand are never changed.\n- **Adaptive quality, frames unlocked.** The game draws into a render target that is upscaled to 1080p. When frames run long, the render scale, MSAA, shadows and effects step down in turn, and step back up when there is headroom. The frame rate is never capped or locked.\n- **Smoother frames.** The main loop no longer creates garbage every frame, physics skips bodies that haven't moved, and shaders are compiled before the first frame instead of during play.\n- **Faster start-up.** The game is packaged as a few files with asset packs, the splash is shorter, the WebView2 runtime starts earlier, and libraries a game doesn't use are left out.\n- **Controller input** reaches the game only when it changes, off the render thread.\n- **Diagnostics:** `app.log` gets a start line (GPU, resolution, profile, memory) and a `perf:` line every 10 s, shown in Build for Xbox → Diagnostics. Measure Release builds started from Dev Home or Build and run, not under the debugger.\n- Measured here on a software GPU with a 4x slower CPU: time to playable about 50–67% shorter, heavy-scene frame time about 40% shorter. Real console numbers come from the `perf:` lines.\n\n## Still not in this version\n- Android builds on the Native Player and on the C++ player (their Android templates are being rebuilt). Android builds use the WebView player.\n",
+  "version": "2.28.6",
+  "file": "Ignite3D-Update-2.28.6.exe",
+  "size": 44816931,
+  "sha256": "33d51ef40a47bfd088a18ee02f90060b9dde1ebad732352dcc29c94397137226",
+  "notes": "## Web Games read the project's scenes\n- A Web Game object's code can ask for the project's scenes with a comment at its top: `/* @ignite-scenes: Level- */` (one or more name prefixes, separated by commas). Every scene whose name starts with one of them comes to the game as data. `IgniteScenes.names()` lists them in build order, then by name. `IgniteScenes.get(name)` gives a scene's settings and its objects, with their transforms, components and script properties (the script's defaults with the scene's values over them). Asset fields hold the asset's name.\n- `IgniteScenes.start` names the scene the game started from: in the editor, the scene that was open when you pressed Play; in a build, the first scene in **Build → Scenes in Build**.\n- A game made as a web page can now keep its levels, tracks or other content as scenes made in the Scene view and the Inspector. It works in Play, in web exports and builds, and in the C++ players. The script editor's reference has a \"Web Games: project scenes\" section.\n\n## Still not in this version\n- Android builds on the Native Player and on the C++ player (their Android templates are being rebuilt). Android builds use the WebView player.\n",
   "platforms": {
     "linux": {
-      "file": "Ignite3D-2.28.5-linux-x64.AppImage",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.5/Ignite3D-2.28.5-linux-x64.AppImage",
-      "size": 184889299,
-      "sha256": "2651cebfed0a1eecadf2c5b2847ef4b0e311d7e847e0e7c374b3e3472495411a"
+      "file": "Ignite3D-2.28.6-linux-x64.AppImage",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.6/Ignite3D-2.28.6-linux-x64.AppImage",
+      "size": 185238462,
+      "sha256": "6694dc19b9a54b6e5576a71565235b4c59ff6bf978b227f03d0fdc077e75589a"
     },
     "mac": {
-      "file": "Ignite3D-2.28.5-mac-x64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.5/Ignite3D-2.28.5-mac-x64.zip",
-      "size": 405386731,
-      "sha256": "fc8dbec77fb77a0cce0f38e031ed1022d3efd74911d1a991b7efd00e1a2909de"
+      "file": "Ignite3D-2.28.6-mac-x64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.6/Ignite3D-2.28.6-mac-x64.zip",
+      "size": 405738196,
+      "sha256": "4b085f30f162d578521fe8114404f323ad78e846a1c57d5a37641af8f73e81e6"
     },
     "mac-arm64": {
-      "file": "Ignite3D-2.28.5-mac-arm64.zip",
-      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.5/Ignite3D-2.28.5-mac-arm64.zip",
-      "size": 394012524,
-      "sha256": "a4e2723687c6a0f1ecb6a5642b2da576475a3f5a7918b2d0caf522bca6771636"
+      "file": "Ignite3D-2.28.6-mac-arm64.zip",
+      "url": "https://github.com/oRit-907/Ignite3D/releases/download/v2.28.6/Ignite3D-2.28.6-mac-arm64.zip",
+      "size": 394363989,
+      "sha256": "3efd5f1bcb96f8ec91c30792d3bde879a2157ddeca317322860be0eabc0df408"
     }
   }
 }
